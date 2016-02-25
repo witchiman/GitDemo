@@ -1,3 +1,2 @@
-Hello this is master. Hi:
-here is the new content from windows account.
-commit again.
+Master add content.
+b add content
