@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.software.hui.learnintent" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyAty"
+            android:exported="false" android:label="MyAty1" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="org.software.hui.learnintent.MyAty" />
+                <data android:scheme="app" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyAty2"
+            android:label="@string/title_activity_my_aty2" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="org.software.hui.learnintent.MyAty"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

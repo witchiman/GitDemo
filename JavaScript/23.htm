@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>
+		函数
+		</title>
+	<Script language="JavaScript">
+	function confirmit()
+	{
+  	if(confirm("你确认删除此文件么？"))
+  	{
+  		document.testa.submit();
+  	} 
+  }  	
+	</Script>	
+	</head>
+	<body>
+	<form name="testa" action="ttt.jsp" method="post">
+		<input type="button" value="删除文件" onclick="JavaScript:confirmit()" name="aaa">
+	</form>
+	</body>
+</html>

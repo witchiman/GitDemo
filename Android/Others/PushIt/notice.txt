@@ -1,0 +1,7 @@
+工程APP目录下的 build.gradle添加
+//在android下添加这个一个sourceSets.main
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }

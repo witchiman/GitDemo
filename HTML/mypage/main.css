@@ -1,0 +1,38 @@
+/* CSS Document */
+
+* {margin:0; padding:0}
+
+p {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: italic;
+	line-height: 30px;
+	font-weight: bold;
+	font-variant: small-caps;
+	color: #FF0000;
+	text-decoration: underline;
+	background-color: #00FF33;
+	background-image: url(images/eclipse.jpg);
+	border: thin dotted #6600CC;
+}
+
+.important {
+	font-size:24px;
+}
+
+#main {
+	border: 5px double #FF0099;
+}
+
+p a:link{color:green;text-decoration:none}
+p a:active{color:blue;text-decoration:none}
+p a:visited{color:orange;text-decoration:none}
+p a:hover{color:red;text-decoration:underline}
+
+table .title {
+	font-size:28px;
+}
+
+table #title {
+	font-size:28px;
+}

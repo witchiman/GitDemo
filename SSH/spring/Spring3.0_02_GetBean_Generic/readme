@@ -1,0 +1,6 @@
+01：
+基础
+
+02：
+context.getBean可以使用泛型，不用强制转换了
+见：/test com.bjsxt.spring30.dao.UserDAOTest2

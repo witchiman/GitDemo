@@ -1,0 +1,20 @@
+01：
+基础
+
+02：
+context.getBean可以使用泛型，不用强制转换了
+见：/test com.bjsxt.spring30.dao.UserDAOTest2
+
+03：
+三种配置方式：XML Annotation JavaConfig
+com.bjsxt.spring30.config,需要cglib和asm
+运行UserDAOTest
+
+04:
+使用JavaConfig
+引入UserService
+注入UserDAO
+运行UserServiceTest
+
+05：
+SpELTest_Simple

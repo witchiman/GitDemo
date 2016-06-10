@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hui.fragment_news.NewsContentFrag">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="正文"/>
+
+    <LinearLayout
+        android:id="@+id/visibilityLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/news_content_title"
+            android:text="Here is the titile"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:background="@drawable/img_seperate"/>
+        <TextView
+            android:id="@+id/news_content_content"
+            android:layout_width="match_parent"
+            android:textSize="15sp"
+            android:textColor="#444444"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="This is content!" />
+    </LinearLayout>
+
+</LinearLayout>

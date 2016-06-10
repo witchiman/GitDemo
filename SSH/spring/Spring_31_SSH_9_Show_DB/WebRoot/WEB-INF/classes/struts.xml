@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="GBK"/>
+ 
+	<package name="ssh" namespace="/" extends="struts-default">
+		<action name="user" class="com.hui.ssh.action.UserAction">
+			<result name="success">/registerSuccess.jsp</result>
+			<result name="error">/registerFail.jsp</result>
+			<result name="list">/userList.jsp</result>
+		</action> 
+	</package>     
+
+</struts>

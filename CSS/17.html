@@ -1,0 +1,29 @@
+<HTML>
+	<HEAD>
+		<TITLE>定位属性</TITLE>
+		<STYLE type=text/css>
+			#container1 {POSITION: absolute; TOP: 100px}
+			#container2 {VISIBILITY: hidden; POSITION: absolute; TOP: 100px}
+			P{FONT-SIZE: 12pt}
+		</STYLE>
+	</HEAD>
+	
+	<BODY>
+		<P style="FONT-SIZE: 15pt; COLOR: #cc33cc; FONT-FAMILY: 行书体">请选择一幅图片: </P>
+		<DIV id=container1>
+			<IMG height=280 src="images/sand.jpg" width=185> 
+			<P style="FONT-SIZE: 12pt; COLOR: #cc9933; FONT-FAMILY: 行书体">名称：大漠</P>
+		</DIV>
+		<DIV id=container2>
+			<IMG height=280 src="images/ocean.jpg" width=185> 
+			<P style="FONT-SIZE: 12pt; COLOR: #3366cc; FONT-FAMILY: 行书体">名称：大海</P>
+		</DIV>
+		
+		<FORM name=myform>
+			<P>
+			<INPUT onclick="container1.style.visibility='visible'; container2.style.visibility='hidden'" type=button value=大漠> 
+			<INPUT onclick="container2.style.visibility='visible'; container1.style.visibility='hidden'" type=button value=大海>
+			</P>
+		</FORM>
+	</BODY>
+</HTML>

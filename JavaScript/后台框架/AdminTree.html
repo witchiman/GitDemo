@@ -1,0 +1,80 @@
+
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<LINK REL=stylesheet HREF="script/toc.css" TYPE="text/css">
+<SCRIPT LANGUAGE="JavaScript" src="script/AdminTree.js"></script>
+<STYLE TYPE='text/css'>
+.level1 {margin-left:30;}
+.level2 {display:none;margin-left:38;}
+</STYLE>
+</HEAD>
+<BODY onload="init()" topmargin="0" leftmargin="0" rightmargin="0">
+<DIV CLASS="level1" ID='head2Parent'>
+	<A class=OUTDENT href="" onclick='return expandIt("head2");'><IMG border=0 name=imEx  src="images/arrowUp.gif" id=ttt> 用户管理</a>
+</DIV>
+
+<DIV CLASS="level2" ID='head2Child'>
+	<A href="userReg.html" id=ttt target=main onclick="doClick()"><LI>增加用户</LI></a>
+	<A href="UserList.jsp" id=ttt target=main><LI>用户列表</LI></a>
+	<A href="RoleManager.jsp" id=ttt target=main><LI>系统角色</LI></a>
+		<A href="RoleManager.jsp" id=ttt target=main><LI>用户删除</LI></a>
+</DIV>
+
+<DIV CLASS="level1" ID='head3Parent'>
+	<A class=OUTDENT href="" onclick='return expandIt("head3");' id=ttt><IMG border=0 height=13 name=imEx  src="images/arrowUp.gif" width=17> 资源管理</a>
+</DIV>
+
+<DIV CLASS="level2" ID='head3Child'>
+	<A href="Setserver.jsp" id=ttt target=main><LI>服务器设置</LI></a>
+	<A href="Resource.jsp" id=ttt target=main><LI>资源信息</LI></a>
+	<A href="ListServerResourceDir.jsp" id=ttt target=main><LI>资源归档</LI></a>
+</DIV>
+
+<DIV CLASS="level1" ID='head4Parent'>
+	<A class=OUTDENT href="" onclick='return expandIt("head4");' id=ttt><IMG border=0 height=13 name=imEx  src="images/arrowUp.gif" width=17> 课程管理</a>
+</DIV>
+
+<DIV CLASS="level2" ID='head4Child'>
+	<A href="Course.jsp" id=ttt target=main><LI>课程建立</LI></a>
+	<A href="CourseValidate.jsp" id=ttt target=main><LI>课程确认</LI></a>
+	<A href="CoursePublish.jsp" id=ttt target=main><LI>课程发布</LI></a>
+	<A href="CourseStore.jsp" id=ttt target=main><LI>课程库管理</LI></a>
+	<A href="CourseRequestDeal.jsp" id=ttt target=main><LI>课程申请处理</LI></a>
+</DIV>
+
+<DIV CLASS="level1" ID='head6Parent'>
+	<A class=OUTDENT href="" onclick='return expandIt("head6");' id=ttt><IMG border=0 height=13 name=imEx  src="images/arrowUp.gif" width=17> 新闻发布</a>
+</DIV>
+
+<DIV CLASS="level2" ID='head6Child'>
+	<A href="News.jsp" id=ttt target=main><LI>新闻管理</LI></a>
+</DIV>
+
+<DIV CLASS="level1" ID='head7Parent'>
+	<A class=OUTDENT href="" onclick='return expandIt("head7");' id=ttt><IMG border=0 height=13 name=imEx  src="images/arrowUp.gif" width=17> 组织结构</a>
+</DIV>
+
+<DIV CLASS="level2" ID='head7Child'>
+	<A href="Applier.jsp" id=ttt target=main><LI>组织结构管理</LI></a>
+</DIV>
+
+<DIV CLASS="level1" ID='head8Parent'>
+	<A class=OUTDENT href="" onclick='return expandIt("head8");' id=ttt><IMG border=0 height=13 name=imEx  src="images/arrowUp.gif" width=17> 直播管理</a>
+</DIV>
+
+<DIV CLASS="level2" ID='head8Child'>
+      <A href="Live.jsp" id=ttt target=main><LI>直播组织</LI></a>
+      <A href="LiveWorkstation.jsp" id=ttt target=main><LI>直播工作站管理</LI></a>
+</DIV>
+
+<DIV CLASS="level1" ID='head9Parent'>
+	<A class=OUTDENT href="" onclick='return expandIt("head9");' id=ttt><IMG border=0 height=13 name=imEx  src="images/arrowUp.gif" width=17> 订单管理</a>
+</DIV>
+
+<DIV CLASS="level2" ID='head9Child'>
+      <A href="Live.jsp" id=ttt target=main><LI>直播组织</LI></a>
+      <A href="LiveWorkstation.jsp" id=ttt target=main><LI>直播工作站管理</LI></a>
+</DIV>
+</BODY>
+</html>

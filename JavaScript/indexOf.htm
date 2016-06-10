@@ -1,0 +1,33 @@
+<HTML>
+
+	<HEAD>
+		<Script Language="JavaScript">
+
+			function check()
+			{
+				var tmp,str2;
+				//获得text1的值
+				str2=document.myform.text1.value;
+				
+				tmp=str2.indexOf('@');
+				
+				if(tmp<0)
+					//字符串中不包含@字符
+					alert("请输入合法Email地址");
+				else
+					//输出 @ 的位置
+					alert(tmp);
+			}
+			
+		</Script>
+	</HEAD>
+
+	<BODY>
+	  <form name="myform">
+		请输入Email地址：<br>
+		<input type=text value="" name="text1">
+		<p><input type=button value="提交" name="btn1" onClick="check()">
+	  </form>	
+	</BODY>
+
+</HTML>

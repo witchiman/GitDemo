@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LearnComponents</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_choose_adate">ChooseAdate</string>
+    <string name="title_activity_choose_time">ChooseTime</string>
+    <string name="title_activity_radio">Radio</string>
+    <string name="title_activity_checkbox">Checkbox</string>
+</resources>

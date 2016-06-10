@@ -1,0 +1,635 @@
+<html><head><!--STATUS OK-->
+<meta http-equiv="content-type" content="text/html; charset=gb2312"><title>URI、URL、URN区别和JAVA中对应类_¤飞上墙的猫¤</title>
+<style>.error{color:#FF0000;font-size:12px}</style>
+<script language="javascript" src="URI_URL_URN_files/popup.js"></script>
+<script language="JavaScript" src="URI_URL_URN_files/g_spjs.js"></script>
+<script language="javascript">
+<!--
+
+var allkey="";
+var i=0;
+var flag=0;
+function setpv(allnum)
+{
+	var num = allnum.split('_');
+	document.getElementById("result").innerHTML=num[0];
+}
+		 
+function checkMail(s) 
+{ 
+  	var pattern=/\w+@\w+\.[a-z]+/; 
+  	if(pattern.test(s)) 
+    { 
+       return true; 
+    } 
+  	else 
+   { 
+      return false; 
+   } 
+} 
+
+
+function checkeandu(eanduid)
+{
+	var eanduvalue=G(eanduid).value;
+	var len=bytes(eanduvalue);
+	if(len>128)
+	{
+		showErr(2,"您输入的网址或邮箱太长，请保持在128字节以内。");
+		return false;
+	}
+	else
+	{ 
+		 return true;
+	}
+		
+}
+
+function cmtdel(str)
+{
+	var pop=new Popup({ contentType:3,isReloadOnClose:false,width:340,height:80});
+	pop.setContent("title","删除评论");
+	pop.setContent("confirmCon","您确定要彻底删除这条评论吗？");
+	pop.setContent("callBack",delCallback2);
+	pop.setContent("parameter",{fid:str,popup:pop});
+	pop.build();
+	pop.show();
+	return false;
+}
+function delCallback2(para)
+{
+	var o_pop=para["popup"];
+	o_pop.config.contentType=1;
+	o_pop.setContent("contentUrl","");
+	o_pop.reBuild();
+	G(para["fid"]).target=o_pop.iframeIdName;
+	eval("document."+para["fid"]).submit();
+}
+
+
+
+function checkname(strid)
+{
+	var ele=document.getElementById(strid);
+	var len=bytes(ele.value);
+	if(len>49)
+	{
+		showErr(1,"您输入的姓名太长，请保持在49字节以内。");
+		return false;
+	}
+	else 
+	{		
+		if(len==0)
+		{
+			document.getElementById(strid).value="匿名网友";
+		}
+		 return true;
+	}	
+	
+}
+
+function checktext(textid)
+{
+		document.getElementById(textid).value=trimlr(textid);
+		var str=trimrn(textid);
+		len=str.length;
+		if(len==0 || ((/^[\s,　]+$/gi).test(str)) )
+		{
+			showErr(3,"您必须输入评论内容，请检查。");
+			return false;
+		}
+		else 
+		{
+				if(len>1000)
+				{
+					showErr(3,"您输入的评论内容太长，请保持在500字以内。");
+					return false;
+				}
+			return true;
+		}	
+}
+
+function showErr(index,str)
+{
+	G(index+"_err").style.display="";
+	G(index+"_err_con").innerHTML=str;
+}
+function hidErr(index)
+{
+	G(index+"_err").style.display="none";
+	G(index+"_err_con").innerHTML="";
+}
+
+function alertPop(tit,con)
+{
+	var pop=new Popup({ contentType:4,isReloadOnClose:false,width:340,height:80});
+	pop.setContent("title",tit);
+	pop.setContent("alertCon",con);
+	pop.build();
+	pop.show();
+}
+
+function cmtfull()
+{
+	var cnum=0;
+	if(cnum>=50000)
+	{
+		alertPop("发表评论","单篇日志评论数最多为50000条.");
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+function checkcmtform()
+{
+	if(checkname("spBlogCmtor")&&checkeandu("spBlogCmtURL")&&checktext("spBlogCmtText")&&cmtfull())
+	{
+		submitForm();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+var g_pop=null;
+function submitForm()
+{
+	g_pop=new Popup({ contentType:1,isReloadOnClose:false,width:340,height:80});
+	g_pop.setContent("title","添加评论");
+	g_pop.setContent("contentUrl","");
+	g_pop.build();
+	G("popFormSubmit").target=g_pop.iframeIdName;
+	g_pop.show();
+}
+
+function g_close_pop()
+{
+	g_pop.close();
+}
+
+function formatonlinpic()
+{
+	formatverkey();
+var picobj=document.getElementsByName("onlinepic");
+var picnum=picobj.length;
+	
+	for(var i=0;i<picnum;i++)
+	{
+		if(picobj[i].width>200)
+		{
+			picobj[i].width=200;
+		}
+		if(picobj[i].height>200)
+		{
+			picobj[i].height=200;
+		}
+	}
+
+}
+
+function formatverkey()
+{
+	if(document.getElementById("vercode"))
+	{
+
+			if(document.getElementById("spBlogCmtText").value=="")
+	{
+		document.getElementById("vercode").style.display="none";
+	}
+	}
+
+}
+function showverkey()
+{	
+	if(document.getElementById("vercode"))
+	{
+	document.getElementById("vercode").style.display="";
+	}
+}
+//-->
+</script>
+<link rel="stylesheet" type="text/css" href="URI_URL_URN_files/35fadbca7ccb0a46f21fe76d.css"><link rel="stylesheet" type="text/css" href="URI_URL_URN_files/space.css"><style> 
+.stage{background:url(http://img.baidu.com/hi/img/tempbg21b.jpg) 
+
+	
+
+			
+	
+}
+</style><style type="text/css">
+#usrbar{padding:4px 10px 3px 0;font-size:12px;height:19px;line-height:19px;color:#000000;font-family:Arial;text-align:right;background:#ffffff;filter:alpha(opacity=65);-moz-opacity:0.5;width:auto !important;width:100%;letter-spacing:normal}
+#usrbar a,#usrbar a:link,#usrbar a:visited{color:#0000CC;text-decoration:underline}
+#ft{clear:both;height:20px;line-height:20px;color:#666666;font-size:12px;font-family:Arial;text-align:center}
+#ft a,#ft a:link,#ft a:visited{color:#7777CC;text-decoration:underline}
+#usrbar,#usrbar a,#usrbar a:link,#usrbar a:visited,#ft,#ft a,#ft a:link,#ft a:visited{letter-spacing:normal}
+</style></head><body onload="formatonlinpic();">
+<center>
+<script language="JavaScript">
+<!--
+if (top.location != self.location) 
+{
+	top.location=self.location;
+}
+//-->
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="usrbar"><nobr> 
+<script> var myref = encodeURI("http://hi.baidu.com/suofang/blog/item/dcd4eb11daed73c7a7ef3f68%2Ehtml");</script>
+
+                <a href="http://www.baidu.com/" target="_blank">百度首页</a> | <a href="http://hi.baidu.com/" target="_blank">百度空间</a>
+        <script language="JavaScript">
+        document.write(" | <a href='http://passport.baidu.com/?login&tpl=sp&tpl_reg=sp&u="+myref+"'>登录</a>");
+        </script> | <a href="http://passport.baidu.com/?login&amp;tpl=sp&amp;tpl_reg=sp&amp;u=http://hi.baidu.com/suofang/blog/item/dcd4eb11daed73c7a7ef3f68%252Ehtml">登录</a>
+        
+</nobr></div>
+<div id="main" align="left">
+<!--[if IE]>
+<script>
+var objmain = document.getElementById("main");
+function updatesize(){ var bodyw = window.document.body.offsetWidth; if(bodyw <= 790) objmain.style.width="772px"; else if(bodyw >= 1016) objmain.style.width="996px"; else objmain.style.width="100%"; }
+updatesize(); window.onresize = updatesize;
+</script>
+<![endif]-->
+	<div id="header">
+	<div class="lc"><div class="rc"></div></div>
+<div class="tit"><a href="http://hi.baidu.com/suofang" class="titlink" title="suofang的空间 http://hi.baidu.com/suofang">¤飞上墙的猫¤</a></div>
+<div class="desc">～¤～ 看庭前花开花落 ～♂～ 望碧空风卷云舒 ～～～</div>
+<div id="tabline">&nbsp;</div>
+	<div id="tab"><a href="http://hi.baidu.com/suofang">主页</a><a href="http://hi.baidu.com/suofang/blog" class="on">博客</a><a href="http://hi.baidu.com/suofang/album">相册</a><span>|</span><a href="http://hi.baidu.com/suofang/profile">个人档案</a>
+	<span>|</span><a href="http://hi.baidu.com/suofang/friends">好友</a>
+	
+
+
+
+	</div>
+</div>
+
+<div class="stage">
+<div class="stagepad">
+<div style="width: 100%;">
+
+	<table class="modth" border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr><td class="modtl" width="7">&nbsp;</td>
+	<td class="modtc" nowrap="nowrap"><div class="modhead"><span class="modtit">查看文章</span></div></td>
+	<td class="modtc" align="right" nowrap="nowrap"></td>
+	<td class="modtr" width="7">&nbsp;</td>
+	</tr></tbody></table>
+
+<div id="m_blog" class="modbox">
+<div class="tit">URI、URL、URN区别和JAVA中对应类</div>
+<div class="date">2007年03月14日 星期三  下午 01:46</div>
+<table style="table-layout: fixed;"><tbody><tr><td><div class="cnt"><p><strong><font color="#0000ff">URI&nbsp;&nbsp;&nbsp; (Universal Resource Identifier:统一的资源标识)</font></strong> :它是以某种统一的（标准化的）方式标识资源的简单字符串。Web上可用的每种资源 - HTML文档、图像、视频片段、程序等 - 由一个通过通<br>
+用资源标志符（Universal Resource Identifier, 简称"URI"）进行定位。 <br>
+<br>
+URI一般由三部分组成：<br>
+<br>
+访问资源的命名机制。 <br>
+存放资源的主机名。 <br>
+资源自身的名称，由路径表示。 <br>
+考虑下面的URI，它表示了当前的HTML 4.0规范： <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; http://www.webmonkey.com.cn/html/html40/<br>
+<br>
+这个URI是这样的：这是一个可通过HTTP协议访问的资源，位于主<br>
+机www.webmonkey.com.cn上，通过路径“/html/html40”访问。在HTML文档中<br>
+其它资源包括"mailto"（收发email）和"ftp"（FTP访问）。 <br>
+<br>
+这是URI的另一个例子，指向一个用户的邮箱：<br>
+<br>
+&lt;A href="mailto:joe@someplace.com"&gt;Joe Cool&lt;/A&gt;<br>
+<br>
+注：大多数读者可能熟悉"URL"，而不是URI。URL是RUI命名机制的一个子集。<br>
+<br>
+<strong>片段标志符</strong><br>
+有的URI指向一个资源的内部。 这种URI以"#"结束，并跟着一个anchor标志<br>
+符（称为片段标志符）。例如，下面是一个指向section_2的URI：<br>
+<br>
+http://somesite.com/html/top.htm#section_2<br>
+<br>
+<strong>相对URI<br>
+</strong>相对URI 不包含任何命名规范信息。它的路径通常指同一台机器上的资源。相<br>
+对URI可能含有相对路径（如，“..”表示上一层路径），还可能包含片段标<br>
+志符。<br>
+<br>
+为了说明相对URI，假设我们有一个基本的URI <a href="http://www.acme.com/support/intro.htm"><font color="#0000ff"><u>http://www.acme.com/support/intro.htm</u></font></a></p>
+<p>下面的链接中使用了相对URI：<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;A href="suppliers.htm"&gt;Suppliers&lt;/A&gt;<br>
+<br>
+它扩展成完全的URI就是 "http://www.acme.com/support/suppliers.htm"， <br>
+下面是一个图像的相对URI：<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;IMG src="../icons/logo.gif" alt="logo"&gt;<br>
+<br>
+它扩展成完全的URI就是 "http://www.acme.com/icons/logo.gif"。<br>
+<br>
+在HTML中，URI被用来：<br>
+<br>
+链接到另一个文档或资源(参看A和LINK元素)。 <br>
+链接到一个外部样式表或脚本(参看LINK和SCRIPT元素)。 <br>
+在页内包含图像、对象或applet(参看IMAG、OBJECT、APPLET和INPUT<br>
+元素)。 <br>
+建立图像映射(参看MAP和AREA元素)。 <br>
+提交一个表单(参看FORM)。 <br>
+建立一个框架文档(参看FRAME和IFRAME元素)。 <br>
+引用一个外部参考(参看Q、BLOCKQUOTE, INS和DEL元素)。 <br>
+指向一个描述文档的metadata(参看HEAD元素)。<br>
+</p>
+<p><font color="#0000ff"><strong>URL（Uniform Resoure Locator：统一资源定位器）</strong></font><font color="#000000">通俗地说，URL是Internet上用来描述信息资源的字符串，主要用在各种WWW客户程序和服务器程序上，特别是著名的Mosaic。采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。 <br>
+<br>
+◇ URL的格式<br>
+<br>
+URL的格式由下列三部分组成： <br>
+<br>
+第一部分是协议（或称为服务方式）； <br>
+第二部分是存有该资源的主机IP地址（有时也包括端口号）； <br>
+第三部分是主机资源的具体地址。，如目录和文件名等。 <br>
+第一部分和第二部分之间用“：//”符号隔开，第二部分和第三部分用“/”符号隔开。第一部分和第二部分是不可缺少的，第三部分有时可以省略。<br>
+<br>
+◇ URL示例 <br>
+<br>
+文件的URL： <br>
+用URL表示文件时，服务器方式用file表示，后面要有主机IP地址、文件的存取路径（即目录）和文件名等信息。有时可以省略目录和文件名，但“/”符号不能省略。<br>
+例一：file://ftp.yoyodyne.com/pub/files/foobar.txt<br>
+代表存放主机ftp.yoyodyne.com上的pub/files/目录下的一个文件，文件名是foobar.txt。<br>
+例二：file://ftp.yoyodyne.com/pub<br>
+代表主机ftp.yoyodyne.com上的目录/pub。<br>
+例三：file://ftp.yoyodyne.com/<br>
+代表主机ftp.yoyodyne.com上的根目录。<br>
+<br>
+Gopher的URL： <br>
+Gopher服务器有可能使用特殊的端口，在这种情况下，主机IP地址与端口之间要用“：隔开。<br>
+例一：gopher://gopher.yoyodyne.com/<br>
+表示主机gopher.yoyodyne.com上的gopher服务器。<br>
+例二：gopher://gopher.banzai.edu:1234<br>
+表示主机gopher.banzai.edu上的gopher服务器，在端口1234上。<br>
+<br>
+网络新闻的URL： <br>
+利用URL表示网络新闻组时，如果是usenet的话只要指定出新闻组的名字即可。<br>
+例如：news:rec.gardening<br>
+表示usenet上的rec.gardening新闻组（园艺）。<br>
+<br>
+HTTP的 URL：<br>
+使用超级文本传输协议HTTP，提供超级文本信息服务的资源。 </font></p>
+<p><strong><font color="#0000ff">URN (Uniform Resource Name, 统一资源名称)</font></strong> : 也用来标识Internet上的资源，但是它们通过使用一个独立于位置的名称来实现。</p>
+<p><strong><font color="#0000ff">三者区别：</font></strong></p>
+<p>体系中的URI、URL和URN是彼此关联的。URI的范畴位于体系的顶层，URL和URN的范畴位于体系的底层。这种排列显示URL和URN都是URI的子范畴</p>
+<p>URI不能定位或读取/写入资源。这是统一的资源定位器（URL）的任务。URL是一种URI，但是它的大纲组件是已知的网络协议（简称协议），并且它把URI组件与某种协议处理程序（一种资源定位器和根据协议建立的约束规则与资源通讯的读/写机制）。</p>
+<p>&nbsp;&nbsp;&nbsp;<br>
+URI一般不能为资源提供持久不便的名称。这是统一的资源命名（URN）的任务。URN也是一种URI，但是全球唯一的、持久不便的，即使资源不在存在或不再使用。</p>
+<p>URI是一个更广泛的概念，如URL,URN都是一种URI,&nbsp;&nbsp;&nbsp;&nbsp; 可以说URI是抽象的，而具体使用URL,URN来定位。</p>
+<p>URI是用来标识Internet资源的字符串。 URI严格的与Web上一个对象的Internet地址等价。</p>
+<p>URI，URN以及URL具有相似的目标，因此可以互用。
+URI最抽象最概括；因此，它们通常用于技术规范之中。例如URI的语法定义可以作为URN与URL语法定义的基础。
+URN最为通用，但是它们依赖命名来查找服务，因此依赖于并非总是可以用的额外的服务。URL最为常用，并且是HTTP与Web软件的基础。</p>
+<p><strong><font color="#0000ff">JAVA中的URI和URL：</font></strong></p>
+<p>URL和URI都属于JAVA.NET下面的一个类。URI是URL的一个抽象,它不仅包括了统一资源定位符(URL),还包括了统一资源名
+(URN).大多数实际应用中使用的URI都是URL,但是许多规范和标准像XML都是用URI来定义的.在java1.4和更新的版本中,
+URI被java.net.URI 类所表示.这个类与java.net.URL 相比有如下3点重要的区别:<br>
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; URI 类只关心资源的标识和对URI的解析.它没有方法来检索它的URI所标识的资源。<br>
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; URI 类与URL 类相比，它更能适应相关的规范。<br>
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 一个URI 对象能表示一个相对URI 。URL 类在存放之前，就已经对所有的URI进行了“绝对化”的处理。</p>
+<p>简而言之，一个URL 对象就是网络应用层协议进行网络检索的一个代理，而一个URI 对象就只纯粹地做string的解析和操作的工作。URI
+类没有进行网络检索的能力。URL 类有一些进行string解析的方法。比如getFile( ) 和 getRef( )
+方法，但很多都是蹩脚的方法，总是不完全像有关的规范上所说的那样好用。假如你现在用的是java1.4版本或更新的版本，这时你就可以做出选择，如果你
+想下载一个URL指示的内容时，你应该使用
+URL类；如果你想使用URI类来进行标识的工作而不是用来检索的时候，你应该用URI类。例如，去标识一个XML namespace
+的URI。在一些情况下，当你同时需要实现这两种功能时，你可以用方法toURL( ) 把一个URI 转换成一个 URL
+。在java1.5中，你还能用类URL 中的方法toURI( )&nbsp;&nbsp;&nbsp; 把一个URL 转换成一个URI 。<br>
+</p>
+<p><strong><font color="#0000ff">JAVA中构造一个URI：</font></strong> </p>
+<p align="left">　　URI 从字符串构建。与 URL 类不同，URI 类不依赖于底层协议处理器。只要是 URI 语法上正确，Java 就不需要为了创建用于表示的 URI 对象而理解其协议。这样，与 URL 类不同，URI 类可以用于新的试验性的URI 模式。</p>
+<p align="left">　　public URI(String uri) throws URISyntaxException</p>
+<p align="left">　　这是基本的构造函数，根据任何满足条件的字符串创建一个新的 URI 对象。例如：</p>
+<p align="left">　　URI voice = new URI("tel:+1-800-9988-9938");<br>
+　　URI web = new URI("http://www.xml.com/pub/a/2003/09/17/stax.html#id=_hbc");<br>
+　　URI book = new URI("urn:isbn:1-565-92870-9");</p>
+<p align="left">　　如果字符串参数不遵循URI 语法( 例如，如果 URI 以冒号开头) 此构造函数将抛出
+URISyntaxException
+异常。这是一个受查异常，所以需要捕获此异常，或者在调用构造函数的方法中声明并抛出该异常。但是，有一条语法规则不会检查。与 URI
+规范不同的是，URI 中使用的字符不限于 ASCII。它可以包括其他 Unicode 字符，如 é。在语法上 URI
+没有多少限制，特别是，如果不再需要对非 ASCII 字符编码，并且允许相对 URI 的话，那就真没有什么限制了。几乎所有字符串都可以解释为
+URI。</p>
+<p align="left">　　public URI(String scheme, String schemeSpecificPart, String fragment) 　　throwsURISyntaxException</p>
+<p align="left">　　这个构造函数主要用于非层次 URI。模式（scheme）是 URI 的协议，如 http、urn、tel
+等等。它必须由ASCII 字母、数字及三个标点字符 +、- 和 . 组成。模式必须以字母开头。若此参数为
+null，则省略模式，这样会创建一个相对 URI。例如：</p>
+<p align="left">　　URI absolute = new URI("http", "//www.ibiblio.org" , null);<br>
+　　URI relative = new URI(null, "/javafaq/index.shtml", "today");</p>
+<p align="left">　　模式特有的部分取决于URI 模式的语法；对于 http URI 是一种情况，对于 mailto URI 是另一种情况，对于 tel URI 又是其他情况。因为 URI 类会用百分号转义字符来对无效字符编码，实际上这部分不会有任何语法错误。</p>
+<p align="left">　　最后，第三个参数包含一个片段标识符（如果存在的话）。再次说明，片段标识符中禁止的字符会被自动转义。为此参数传递 null 就会忽略片段标识符。</p>
+<p align="left">　　public URI(String scheme, String host, String path, String fragment)<br>
+　　throws URISyntaxException</p>
+<p align="left">　　这个构造函数用于层次 URI，如 http 和 ftp URL。主机和路径一起（用/ 分隔）组成 URI 的模式特有部分</p>
+<p align="left">　　例如：</p>
+<p align="left">　　URI today= new URI("http", "www.ibiblio.org", "/javafaq/index.html", "today");</p>
+<p align="left">　　将生成 URI
+http://www.ibiblio.org/javafaq/index.html#today。如果此构造函数无法根据提供的各部分形成有效的层次
+URI(例如，如果存在模式，所以 URI 必须为绝对 URI，但路径没有以 / 开头)，那么它将抛出 URISyntaxException
+异常。</p>
+<p align="left">　　public URI(String scheme, String authority, String path, String query,String fragment) 　　throws URISyntaxException</p>
+<p align="left">　　这个构造函数与前一个基本相同，只是添加了一个查询字符串部分。例如：</p>
+<p align="left">　　URI today= new URI("http", "www.ibiblio.org", "/javafaq/index.html",<br>
+　　"referrer=cnet&amp;date=2004-08-23", "today");</p>
+<p align="left">　　通常，任何不可转义的语法错误都会导致抛出 URISyntaxException 异常，所有参数都可以传递 null 来忽略这一部分。</p>
+<p align="left">　　public URI(String scheme, String userInfo, String host, int port, String<br>
+　　path, String query, String fragment) throws URISyntaxException</p>
+<p align="left">　　这是前面两个构造函数所调用的主要 URI 构造函数，它有层次性。此方法将授权机构分解为用户信息、主机和端口各部分，每个部分都有自己的语法规则。例如：</p>
+<p align="left">　　URI styles = new URI("ftp", "anonymous:elharo@metalab.unc.edu","ftp.oreilly.com", 21, "/pub/stylesheet", null, null);</p>
+<p align="left">　　但是，生成的 URI 仍然必须遵循 URI 的所有通用规则，再次说明，任何参数都可以传入 null，以忽略结果中的这一部分。</p>
+<p align="left">　　public static URI create(String uri)</p>
+<p align="left">　　这不是构造函数，而是一个静态工厂方法。与构造函数不同，它不抛出 URISyntax-Exception
+异常。如果你确定你的 URI 是有效的，不违反任何规则，就可以使用这个方法。例如，下面的调用将创建使用电子邮件地址作为口令进行匿名 FTP
+访问的 URI：</p>
+<p align="left">　　URI styles = 　　URI.create("ftp://anonymous:elharo%40metalab.unc.edu@ftp.oreilly.com:21/pub/stylesheet");</p>
+<p align="left">　　如果此 URI 证明是不正确的，这个方法会抛出一个 IllegalArgumentException 异常。这是运行时异常，所以不必显式声明或捕获它。</p></div></td></tr></tbody></table>
+<br>
+<div class="opt">
+<a href="http://hi.baidu.com/suofang/blog/category/%BB%F9%B4%A1%D6%AA%CA%B6" title="查看该分类中所有文章">类别：基础知识</a>
+ 
+	| 浏览(<span id="result">55</span>)
+</div>
+
+<div class="line">&nbsp;</div>
+
+<script language="JavaScript">
+allkey=allkey+"810777ec6dee3ad12f2e2176_dcd4eb11daed73c7a7ef3f68_";
+</script>
+
+<div id="in_comment">
+<a name="comment"></a>
+<div class="tit">网友评论：</div>
+<script>
+function writecmt(type,id,cmtname,cmturl,cmttime){
+	var html1="";
+	if(type==1){
+		if(cmturl==""){
+			html1="<a name='"+id+"'>"+cmtname+"</a> - <span class='date'>"+cmttime+"</span> ";
+		}else{
+			html1="<a name='"+id+"' href='"+cmturl+"' target='_blank' title='"+cmturl+"'>"+cmtname+"</a> - <span class='date'>"+cmttime+"</span> ";
+		}
+	}else{
+		if(cmtname=="匿名网友"){
+			if(cmturl==""){
+				html1="<a name='"+id+"'>"+cmtname+"</a> - <span class='date'>"+cmttime+"</span> ";
+			}else{
+				html1="<a name='"+id+"' href='"+cmturl+"' target='_blank' title='"+cmturl+"'>"+cmtname+"</a> - <span class='date'>"+cmttime+"</span>";
+			}
+		}else{
+			if(cmturl==""){
+				html1="<div class='f14' style='display:inline'>网友:<a name='"+id+"'>"+cmtname+"</a> - <span class=\"date\">"+cmttime+"</span></div>";
+			}else{
+				html1="<div class='f14' style='display:inline'>网友:<a name='"+id+"' href='"+cmturl+"' target='_blank' title='"+cmturl+"'>"+cmtname+"</a> - <span class=\"date\">"+cmttime+"</span></div>";
+			}
+		}
+	}
+	document.write(html1);
+}
+
+</script>
+
+
+
+
+
+<div id="page"></div>
+
+</div>
+
+
+<div id="in_send">
+<form name="form1" id="popFormSubmit" action="/suofang/commit" method="post" onsubmit="return checkcmtform()">
+<input name="ct" value="8" type="hidden">
+<input name="cm" value="1" type="hidden">
+<input name="spBlogID" value="dcd4eb11daed73c7a7ef3f68" type="hidden">
+<script language="JavaScript">
+	document.write("<input type='hidden' name='spRefURL' value='"+window.location.href+"'>");
+</script><input name="spRefURL" value="http://hi.baidu.com/suofang/blog/item/dcd4eb11daed73c7a7ef3f68.html" type="hidden">
+<div class="tit">发表评论：</div>
+<table border="0" cellpadding="0" cellspacing="5" width="620">
+<tbody><tr>
+
+<td class="f14">姓　名：</td>
+<td><input name="spBlogCmtor" id="spBlogCmtor" style="width: 220px;" onchange="checkname('spBlogCmtor')" maxlength="49" onfocus="hidErr(1);" type="text"><div style="display: none;" id="nmerror">*姓名最长为50字节</div></td>
+</tr>
+
+<tr id="1_err" style="display: none;">
+<td>&nbsp;</td>
+<td><div class="error" id="1_err_con"></div></td>
+</tr>
+
+<tr>
+<td class="f14">网址或邮箱：</td>
+<td><input name="spBlogCmtURL" id="spBlogCmtURL" style="width: 360px;" maxlength="128" onchange="checkeandu('spBlogCmtURL')" onfocus="hidErr(2);" type="text"> (选填)</td>
+<script>
+G("spBlogCmtor").value="";
+G("spBlogCmtURL").value="";
+</script>
+
+</tr>
+
+<tr id="2_err" style="display: none;">
+<td>&nbsp;</td>
+<td><div class="error" id="2_err_con"></div></td>
+</tr>
+
+<tr>
+<td class="f14" valign="top">内　容：</td>
+<td><textarea name="spBlogCmtText" id="spBlogCmtText" style="width: 520px; height: 155px;" onfocus="showverkey();hidErr(3);"></textarea>
+<script>
+G("spBlogCmtText").value="";
+</script>
+</td>
+</tr>
+<tr id="3_err" style="display: none;">
+<td>&nbsp;</td>
+<td><div class="error" id="3_err_con"></div></td>
+</tr>
+
+<tr style="display: none;" id="vercode">
+<td class="f14" valign="top">验证码：</td>
+<td valign="top"><input name="spVcode" value="5509ACC7D543CBC62AA78E601960D6DCD48A6E17ACC1FFC2986CB397DE6C9FAC5CAF1F4D73CED2E6DC1CC1AC8C7147C177BFA051123E4D0C1F9DCE32C09C0008" type="hidden">
+<input name="spVerifyKey" size="6" maxlength="4" autocomplete="off" type="text">请输入下图中的四位验证码，字母不区分大小写。<br>
+
+		<script language="JavaScript">
+
+			var imgsrc="http://post.baidu.com/cgi-bin/genimg?5509ACC7D543CBC62AA78E601960D6DCD48A6E17ACC1FFC2986CB397DE6C9FAC5CAF1F4D73CED2E6DC1CC1AC8C7147C177BFA051123E4D0C1F9DCE32C09C0008";
+			document.write("<img id='verifypic' src='"+imgsrc+"' width='120' height='40'>");
+
+			function newverifypic(){
+				document.getElementById("verifypic").src = imgsrc +"&t="+ Math.random();
+			}
+		</script><img id="verifypic" src="URI_URL_URN_files/genimg.jpg" height="40" width="120">
+<a href="javascript:newverifypic();" title="看不清左边的字符">看不清?</a>
+</td>
+</tr>
+
+
+<tr>
+<td class="f14" valign="top">&nbsp;</td>
+<td class="f14" valign="top"><input name="btn_ok" value="发表评论" type="submit"></td>
+</tr>
+</tbody></table>
+</form>
+</div>
+
+
+
+
+<br>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" height="8" width="100%">
+<tbody><tr><td class="modbl" width="7">&nbsp;</td>
+<td class="modbc">&nbsp;</td>
+<td class="modbr" width="7">&nbsp;</td>
+</tr></tbody></table>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script language="javascript">
+<!--
+var hstr="/suofang/brwstat?key1=1";
+document.write("<script src='"+hstr+"&key2="+allkey+"'><\/script>");
+//-->
+</script><script src="URI_URL_URN_files/brwstat.htm"></script>
+<br><center><div id="ft">&#169;2007 Baidu</div></center>
+
+<script>
+if(document.getElementById("m_blog"))
+{
+	var imgarray = document.getElementById("m_blog").getElementsByTagName('img');
+	var imgw = document.getElementById("m_blog").offsetWidth;
+	imgw =imgw-40;
+	for(var i=0; i<imgarray.length; i++){
+	if(imgarray[i].className=="blogimg" && imgarray[i].width>=imgw) imgarray[i].width=imgw;
+	}
+}
+</script>
+</center>
+
+
+<img src="URI_URL_URN_files/c.htm" style="display: none;">
+</body></html>

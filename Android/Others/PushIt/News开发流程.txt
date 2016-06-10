@@ -1,0 +1,12 @@
+1.闪屏页——>引导页&&引导页按钮——>添加引导页小圆点——>圆点随位置移动——>新手引导只展现一次——>主页增加侧边栏——>主页使用Fragment
+2.主页面框架，加入RadioButton——>主页面下5个子页面的实现——>页签切换——>搭建本地服务器，从网络获取数据——>获取网络数据传递给侧边栏——>
+	点击侧边栏切换页面——>页签详情页实现
+3.ViewPagerIndicator的使用——>ViewPagerIndicator样式修改，切换下个页面——>滑动事件的处理（TabDetailViewPager）——>展示头条新闻，使用Xutils3中的x.image().bind()下载图片
+	——>设置头条新闻标题——>使用ViewPagerIndicator（CirclePageIndicator）实现头条新闻位置指示器——>新闻列表展示，头条新闻作为HeaderView加入ListView
+	——>自定义下拉刷新，使用自定义的RefreshListView。
+4.下拉刷新实现——>加载更多实现，footerView——>listView点击封装（RefreshListView里覆盖）,标记已读——>使用WebView，显示新闻详情——>WebView字体调整——>
+	使用ShareSdk分享（新浪微博使用自己的App Key才能分享）——>头条新闻图片自动轮播，监听轮播触摸（按下暂停，抬起继续）——>组图开发,ListView和GridView
+	
+5.网络缓存——>本地缓存——>内存缓存——>图片压缩——>内存溢出解决方案
+6.屏幕适配，通过getWindowManager().getDefaultDisplay().getSize()获得屏幕参数
+	

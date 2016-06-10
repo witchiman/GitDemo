@@ -1,0 +1,912 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ajax&nbsp;&nbsp;实现3级联动菜单_流年似水_新浪博客</title>
+<meta name="keywords" content="ajax&nbsp;&nbsp;实现3级联动菜单_流年似水_新浪博客,流年似水,杂谈" />
+<meta name="description" content="ajax&nbsp;&nbsp;实现3级联动菜单_流年似水_新浪博客,流年似水," />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://blog.sina.cn/dpool/blog/s/blog_52fb3e8601009xjd.html?vt=4">
+<meta http-equiv="mobile-agent" content="format=wml; url=http://blog.sina.cn/dpool/blog/ArtRead.php?nid=52fb3e8601009xjd&vt=1">
+<!–[if lte IE 6]>
+<script type="text/javascript">
+try{
+document.execCommand("BackgroundImageCache", false, true);
+}catch(e){}
+</script>
+<![endif]–>
+<script type="text/javascript">
+window.staticTime=new Date().getTime();
+</script>
+<link rel="pingback" href="http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php?rsd" />
+<link href="http://blog.sina.com.cn/blog_rebuild/blog/wlwmanifest.xml" type="application/wlwmanifest+xml" rel="wlwmanifest" />
+<link rel="alternate" type="application/rss+xml" href="http://blog.sina.com.cn/rss/1392197254.xml" title="RSS" />
+<link href="http://simg.sinajs.cn/blog7style/css/conf/blog/article.css" type="text/css" rel="stylesheet" /><link href="http://simg.sinajs.cn/blog7style/css/common/common.css" type="text/css" rel="stylesheet" /><link href="http://simg.sinajs.cn/blog7style/css/blog/blog.css" type="text/css" rel="stylesheet" /><link href="http://simg.sinajs.cn/blog7style/css/module/common/blog.css" type="text/css" rel="stylesheet" /><style id="tplstyle" type="text/css">@charset "utf-8";@import url("http://simg.sinajs.cn/blog7newtpl/css/5/5_16/t.css");
+</style>
+<style id="positionstyle"  type="text/css">
+</style>
+<style id="bgtyle"  type="text/css">
+</style>
+<style id="headtyle"  type="text/css">
+</style>
+<style id="navtyle"  type="text/css">
+</style>
+<script type="text/javascript" src="http://d1.sina.com.cn/litong/zhitou/sspnew.js"></script></head>
+<body>
+<!--$sinatopbar-->
+<div style="z-index:512;" class="nsinatopbar">
+  <div style="position:absolute;left:0;top:0;" id="trayFlashConnetion"></div>
+  <div class="ntopbar_main">
+    <div class="ntopbar_floatL">
+      <div class="ntopbar_ad" id="loginBarActivity" style="display:none;"></div>
+    </div>
+    <div class="ntopbar_loading"></div>
+  </div>
+</div>
+<!--$end sinatopbar-->
+
+<div class="sinabloga" id="sinabloga">
+	<div id="sinablogb" class="sinablogb">
+
+	   
+ <div id="sinablogHead" class="sinabloghead">
+     <div style="display: none;" id="headflash" class="headflash"></div>
+ </div>
+    
+    <!--主题内容开始 -->
+    <div class="sinablogbody" id="sinablogbody">
+		
+	<!--第一列start--><!--第一列end-->
+	
+	<!--第二列start-->
+	<div id="column_2" class="SG_colW73">	
+<div id="module_920" class="SG_conn">
+	<div class="SG_connHead">
+	    <span comp_title="正文" class="title">正文</span>
+	    <span class="edit"><span id="articleFontManage" class="fontSize">字体大小：<a href="javascript:;" onclick="changeFontSize(2);return false;">大</a> <strong>中</strong> <a href="javascript:;" onclick="changeFontSize(0);return false;">小</a></span></span>
+	</div>
+    <div class="SG_connBody">
+<!--博文正文 begin -->
+	<div id="articlebody" class="artical" favMD5='{"52fb3e8601009xjd":"32b8231873749849bf73480f3c72b198"}'>
+		<div class="articalTitle"> 
+			
+								<h2 id="t_52fb3e8601009xjd" class="titName SG_txta">ajax&nbsp;&nbsp;实现3级联动菜单</h2><div class="turnBoxzz"></div>		</div>
+		<div class="articalTag" id="sina_keyword_ad_area">
+			<table>
+				<tr>
+					<td class="blog_tag">
+					<script>
+					var $tag='杂谈';
+					var $tag_code='2d11884e8841a29f200d02cd9edb21eb';
+					var $r_quote_bligid='52fb3e8601009xjd';
+					var $worldcup='0';
+					var $worldcupball='0';
+					</script>
+											<span class="SG_txtb">标签：</span>
+																				<h3><a href="http://search.sina.com.cn/?c=blog&q=%D4%D3%CC%B8&by=tag" target="_blank">杂谈</a></h3>
+																</td>
+					<td class="blog_class">
+											<span class="SG_txtb">分类：</span>
+						<a target="_blank" href="http://blog.sina.com.cn/s/articlelist_1392197254_2_1.html">工作学习</a>
+										</td>
+				</tr>
+			</table>
+		</div>
+						<!-- 正文开始 -->
+		<div id="sina_keyword_ad_area2" class="articalContent   ">
+			<p>插入数据库语句</P>
+<p><br/>
+create table COUNTRY<br/>
+(<br/>
+&nbsp;<wbr> NAME VARCHAR2(100) not null,<br/>
+&nbsp;<wbr> TYPE NUMBER not null<br/>
+)<br/>
+;<br/>
+alter table COUNTRY<br/>
+&nbsp;<wbr> add constraint PRIMARY_KEY primary key
+(TYPE);</P>
+<p><br/>
+insert into COUNTRY (NAME, TYPE)<br/>
+values ('中国', 1);<br/>
+insert into COUNTRY (NAME, TYPE)<br/>
+values ('美国', 2);<br/>
+insert into COUNTRY (NAME, TYPE)<br/>
+values ('日本', 3);</P>
+<p>&nbsp;<wbr></P>
+<p>&nbsp;<wbr></P>
+<p>&nbsp;<wbr></P>
+<p><br/>
+create table CITY<br/>
+(<br/>
+&nbsp;<wbr>
+NAME&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+VARCHAR2(100) not null,<br/>
+&nbsp;<wbr>
+TYPE&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+NUMBER not null,<br/>
+&nbsp;<wbr> COUNTRYTYPE NUMBER not null<br/>
+)<br/>
+;</P>
+<p><br/>
+insert into CITY (NAME, TYPE, COUNTRYTYPE)<br/>
+values ('沈阳', 1, 1);<br/>
+insert into CITY (NAME, TYPE, COUNTRYTYPE)<br/>
+values ('大连', 2, 1);<br/>
+insert into CITY (NAME, TYPE, COUNTRYTYPE)<br/>
+values ('american_city1', 3, 2);<br/>
+insert into CITY (NAME, TYPE, COUNTRYTYPE)<br/>
+values ('american_city2', 4, 2);<br/>
+insert into CITY (NAME, TYPE, COUNTRYTYPE)<br/>
+values ('american_city3', 5, 2);<br/>
+insert into CITY (NAME, TYPE, COUNTRYTYPE)<br/>
+values ('japan_city1', 6, 3);<br/>
+insert into CITY (NAME, TYPE, COUNTRYTYPE)<br/>
+values ('japan_city2', 7, 3);</P>
+<p><br/>
+&nbsp;<wbr></P>
+<p>&nbsp;<wbr></P>
+<p><br/>
+create table STREET<br/>
+(<br/>
+&nbsp;<wbr>
+NAME&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+VARCHAR2(100) not null,<br/>
+&nbsp;<wbr>
+TYPE&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+NUMBER not null,<br/>
+&nbsp;<wbr> CITYTYPE NUMBER not null<br/>
+)<br/>
+;</P>
+<p><br/>
+insert into STREET (NAME, TYPE, CITYTYPE)<br/>
+values ('中街', 1, 1);<br/>
+insert into STREET (NAME, TYPE, CITYTYPE)<br/>
+values ('太原街', 2, 1);<br/>
+insert into STREET (NAME, TYPE, CITYTYPE)<br/>
+values ('大连street1', 3, 2);<br/>
+insert into STREET (NAME, TYPE, CITYTYPE)<br/>
+values ('大连street2', 4, 2);<br/>
+insert into STREET (NAME, TYPE, CITYTYPE)<br/>
+values ('大连street3', 5, 2);</P>
+<p>&nbsp;<wbr></P>
+<p>新建servlet 类两个</P>
+<p>&nbsp;<wbr></P>
+<p>package test.servlet;</P>
+<p>import java.io.*;<br/>
+import java.sql.*;<br/>
+import java.util.*;<br/>
+import javax.servlet.*;<br/>
+import javax.servlet.http.*;</P>
+<p>public class SelectServlet extends HttpServlet {</P>
+<p>&nbsp;<wbr>public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>throws
+ServletException, IOException {</P>
+<p>
+&nbsp;<wbr>&nbsp;<wbr>response.setContentType("text/xml;charset=gb2312");<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>response.setHeader("Cache-Control",
+"no-cache");<br/>
+&nbsp;<wbr>&nbsp;<wbr>String targetId =
+request.getParameter("id").toString();</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>String xml_start =
+"&lt;selects&gt;";<br/>
+&nbsp;<wbr>&nbsp;<wbr>String xml_end =
+"&lt;/selects&gt;";<br/>
+&nbsp;<wbr>&nbsp;<wbr>String xml = "";<br/>
+&nbsp;<wbr>&nbsp;<wbr>List list1 = new
+ArrayList();<br/>
+&nbsp;<wbr>&nbsp;<wbr>List list2 = new
+ArrayList();</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>String sql
+= "select * from city where countrytype='" + targetId + "'";<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>ConnDB53
+db=new ConnDB53();<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>ResultSet
+rs=db.executeQuery(sql);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>try{<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>while
+(rs.next()) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>list1.add(rs.getString("name"));<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>list2.add(rs.getString("type"));<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}catch(Exception
+e){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>e.printStackTrace();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br/>
+&nbsp;<wbr>&nbsp;<wbr></P>
+<p>&nbsp;<wbr>&nbsp;<wbr>if
+(targetId.equalsIgnoreCase("0")) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>xml =
+"&lt;select&gt;&lt;value&gt;0&lt;/value&gt;&lt;text&gt;--请选择--&lt;/text&gt;&lt;/select&gt;";<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>} else {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>xml =
+"&lt;select&gt;&lt;value&gt;0&lt;/value&gt;&lt;text&gt;--请选择--&lt;/text&gt;&lt;/select&gt;";<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>for (int i =
+0; i &lt; list1.size(); i++) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>xml
++=
+"&lt;select&gt;&lt;value&gt;"
++ list2.get(i) +
+"&lt;/value&gt;&lt;text&gt;"<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>+
+list1.get(i) +
+"&lt;/text&gt;&lt;/select&gt;";<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>&nbsp;<wbr>String last_xml =
+"&lt;?xml version='1.0'
+encoding='GB2312'?&gt;" + xml_start<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>+
+xml + xml_end;<br/>
+&nbsp;<wbr>&nbsp;<wbr>response.getWriter().write(last_xml);</P>
+<p>&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>public void doPost(HttpServletRequest request,
+HttpServletResponse response)<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>throws
+ServletException, IOException {</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>doGet(request,
+response);<br/>
+&nbsp;<wbr>}</P>
+<p>}<br/></P>
+<p>&nbsp;<wbr></P>
+<p>package test.servlet;</P>
+<p>import java.io.IOException;<br/>
+import java.sql.Connection;<br/>
+import java.sql.DriverManager;<br/>
+import java.sql.ResultSet;<br/>
+import java.sql.Statement;<br/>
+import java.util.ArrayList;<br/>
+import java.util.List;<br/>
+import java.util.ResourceBundle;</P>
+<p>import javax.servlet.ServletException;<br/>
+import javax.servlet.http.HttpServlet;<br/>
+import javax.servlet.http.HttpServletRequest;<br/>
+import javax.servlet.http.HttpServletResponse;</P>
+<p>public class SelectServlet2 extends HttpServlet {</P>
+<p>&nbsp;<wbr>public void doGet(HttpServletRequest request,
+HttpServletResponse response)<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>throws
+ServletException, IOException {<br/>
+&nbsp;<wbr>&nbsp;<wbr>response.setContentType("text/xml;charset=gb2312");<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>response.setHeader("Cache-Control",
+"no-cache");<br/>
+&nbsp;<wbr>&nbsp;<wbr>String targetId =
+request.getParameter("id").toString();<br/>
+&nbsp;<wbr>&nbsp;<wbr>String xml_start =
+"&lt;selects&gt;";<br/>
+&nbsp;<wbr>&nbsp;<wbr>String xml_end =
+"&lt;/selects&gt;";<br/>
+&nbsp;<wbr>&nbsp;<wbr>String xml = "";<br/>
+&nbsp;<wbr>&nbsp;<wbr>List list1 = new
+ArrayList();<br/>
+&nbsp;<wbr>&nbsp;<wbr>List list2 = new
+ArrayList();</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>String sql = "select * from
+street where citytype='"+ targetId + "'";<br/>
+&nbsp;<wbr>&nbsp;<wbr>ConnDB53 db=new
+ConnDB53();<br/>
+&nbsp;<wbr>&nbsp;<wbr>ResultSet
+rs=db.executeQuery(sql);<br/>
+&nbsp;<wbr>&nbsp;<wbr>try {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>while
+(rs.next()) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>list1.add(rs.getString("name"));<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>list2.add(rs.getString("type"));<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>&nbsp;<wbr>} catch (Exception e) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>e.printStackTrace();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>if
+(targetId.equalsIgnoreCase("0")) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>xml =
+"&lt;select&gt;&lt;value&gt;0&lt;/value&gt;&lt;text&gt;--请选择--&lt;/text&gt;&lt;/select&gt;";<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>} else {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>xml =
+"&lt;select&gt;&lt;value&gt;0&lt;/value&gt;&lt;text&gt;--请选择--&lt;/text&gt;&lt;/select&gt;";<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>for (int i =
+0; i &lt; list1.size(); i++) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>xml
++=
+"&lt;select&gt;&lt;value&gt;"
++ list2.get(i) +
+"&lt;/value&gt;&lt;text&gt;"<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>+
+list1.get(i) +
+"&lt;/text&gt;&lt;/select&gt;";<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>&nbsp;<wbr>String last_xml =
+"&lt;?xml version='1.0'
+encoding='GB2312'?&gt;" + xml_start<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>+
+xml + xml_end;<br/>
+&nbsp;<wbr>&nbsp;<wbr>response.getWriter().write(last_xml);</P>
+<p>&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>public void doPost(HttpServletRequest request,
+HttpServletResponse response)<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>throws
+ServletException, IOException {</P>
+<p>&nbsp;<wbr>&nbsp;<wbr>doGet(request,
+response);<br/>
+&nbsp;<wbr>}</P>
+<p>}<br/></P>
+<p>&nbsp;<wbr></P>
+<p>&nbsp;<wbr></P>
+<p>package test.servlet;</P>
+<p>import java.sql.*;</P>
+<p>public class ConnDB53 {<br/>
+&nbsp;<wbr>Connection conn = null;<br/>
+&nbsp;<wbr>Statement stmt = null;<br/>
+&nbsp;<wbr>Statement stmt2 = null;<br/>
+&nbsp;<wbr>ResultSet rs = null;<br/>
+&nbsp;<wbr>String user = "maximo";<br/>
+&nbsp;<wbr>String pass = "maximo53";<br/>
+&nbsp;<wbr>String url =
+"jdbc:oracle:thin:@10.64.27.53:1521:PROD";</P>
+<p>&nbsp;<wbr><br/>
+&nbsp;<wbr>public ConnDB53() {<br/>
+&nbsp;<wbr>&nbsp;<wbr>try {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>Class.forName("oracle.jdbc.driver.OracleDriver");<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>conn =
+DriverManager.getConnection(url, user, pass);<br/>
+&nbsp;<wbr>&nbsp;<wbr>} catch
+(java.lang.ClassNotFoundException e) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>System.err.println(e.getMessage());<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>}catch (SQLException e) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>System.err.println(e.getMessage());<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>public ResultSet executeQuery(String sql)
+{<br/>
+&nbsp;<wbr>&nbsp;<wbr>try {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//conn=DriverManager.getConnection(url,user,pass);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>stmt =
+conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>ResultSet.CONCUR_READ_ONLY);<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>rs =
+stmt.executeQuery(sql);<br/>
+&nbsp;<wbr>&nbsp;<wbr>} catch (SQLException ex)
+{<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>ex.printStackTrace();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>System.err.println(ex.getMessage());<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>} finally {<br/>
+&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>&nbsp;<wbr>return rs;<br/>
+&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>public int executeUpdate(String sql) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>int result = 0;<br/>
+&nbsp;<wbr>&nbsp;<wbr>try {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//conn=DriverManager.getConnection(url,user,pass);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>stmt2 =
+conn.createStatement();<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>result =
+stmt2.executeUpdate(sql);<br/>
+&nbsp;<wbr>&nbsp;<wbr>} catch (SQLException ex)
+{<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>ex.printStackTrace();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>result =
+0;<br/>
+&nbsp;<wbr>&nbsp;<wbr>} finally {<br/>
+&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>&nbsp;<wbr>return result;<br/>
+&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>public void freeConn() {<br/>
+&nbsp;<wbr>&nbsp;<wbr>try {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>if (conn !=
+null) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>conn.close();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>&nbsp;<wbr>} catch (Exception e) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>e.printStackTrace(System.err);<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>} finally {<br/>
+&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>}</P>
+<p>&nbsp;<wbr>public void close() {<br/>
+&nbsp;<wbr>&nbsp;<wbr><br/>
+&nbsp;<wbr>&nbsp;<wbr>try {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>if (rs !=
+null)<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>rs.close();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>if (stmt !=
+null)<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>stmt.close();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>if (stmt2 !=
+null)<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>stmt2.close();<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>} catch (Exception e) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>e.printStackTrace(System.err);<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>}<br/>
+}<br/></P>
+<p>&nbsp;<wbr></P>
+<p>&nbsp;<wbr></P>
+<p>web文件加入</P>
+<p>&nbsp;<wbr></P>
+<p>&nbsp;<wbr><br/>
+&nbsp;<wbr><br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;description&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+This is the description of my J2EE component<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/description&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;display-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+This is the display name of my J2EE component<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/display-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+CookieServlet<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-class&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+test.servlet.SelectServlet<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-class&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet&gt;<br/>
+&nbsp;<wbr><br/>
+&nbsp;<wbr><br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;description&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+This is the description of my J2EE component<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/description&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;display-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+This is the display name of my J2EE component<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/display-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+CookieServlet2<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-class&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+test.servlet.SelectServlet2<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-class&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-mapping&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+CookieServlet<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;url-pattern&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+/servlet/select<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/url-pattern&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-mapping&gt;<br/>
+&nbsp;<wbr><br/>
+&nbsp;<wbr><br/>
+&nbsp;<wbr><br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-mapping&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+CookieServlet2<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-name&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;url-pattern&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+/servlet/select2<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/url-pattern&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&lt;/servlet-mapping&gt;</P>
+<p>&nbsp;<wbr></P>
+<p>&nbsp;<wbr></P>
+<p>新建JSP文件</P>
+<p>&nbsp;<wbr></P>
+<p>&lt;%@ page language="java" contentType="text/html;
+charset=gb2312"<br/>
+&nbsp;<wbr>pageEncoding="gb2312"%&gt;<br/>
+&lt;<a HREF="mailto:%@page">%@page</A>
+import="java.sql.*"%&gt;<br/>
+&lt;<a HREF="mailto:%@page">%@page</A>
+import="java.util.*"%&gt;<br/>
+&lt;jsp:useBean id ="db"&nbsp;<wbr> scope="page"
+class="test.servlet.ConnDB53"
+&gt;&lt;/jsp:useBean&gt;</P>
+<p><br/>
+&lt;html&gt;<br/>
+&lt;head&gt;<br/>
+&lt;title&gt;3级菜单联动演示&lt;/title&gt;<br/>
+
+&lt;script type="text/javascript"&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> var
+req;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> function
+Change_Select(){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//当第一个下拉框的选项发生改变时调用该函数<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var country = document.getElementByIdx('one').value;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var url = "servlet/select?id="+ escape(country);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(window.XMLHttpRequest){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req = new XMLHttpRequest();<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}else if(window.ActiveXObject){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req = new ActiveXObject("Microsoft.XMLHTTP");<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(req){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req.open("GET",url,true);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req.onreadystatechange = callback;
+//指定回调函数为callback<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req.send(null);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> }<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> function
+callback(){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(req.readyState ==4){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(req.status ==200){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+parseMessage();//解析XML文档<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}else{<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+alert("Not able to retrieve description" + req.statusText);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> }<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> function
+parseMessage(){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xmlDoc = req.responseXML.documentElement;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//获得返回的XML文档<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xSel = xmlDoc.getElementsByTagName_r('select');<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//获得XML文档中的所有&lt;select&gt;标记<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var city = document.getElementByIdx('two');<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//获得网页中的第二个下拉框<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+city.options.length=0;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//每次获得新的数据的时候先把每二个下拉框架的长度清0<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+for(var i=0;i&lt;xSel.length;i++){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xValue = xSel[i].childNodes[0].firstChild.nodeValue;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//获得每个&lt;select&gt;标记中的第一个标记的值,也就是&lt;value&gt;标记的值<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xText = xSel[i].childNodes[1].firstChild.nodeValue;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//获得每个&lt;select&gt;标记中的第二个标记的值,也就是&lt;text&gt;标记的值<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var option = new Option(xText, xValue);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//根据每组value和text标记的值创建一个option对象<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+try{<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+city.add(option);//将option对象添加到第二个下拉框中<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}catch(e){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> }<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+//*************************************************************************<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+function Change_Select2(){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var city = document.getElementByIdx('two').value;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var url = "servlet/select2?id="+ escape(city);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(window.XMLHttpRequest){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req = new XMLHttpRequest();<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}else if(window.ActiveXObject){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req = new ActiveXObject("Microsoft.XMLHTTP");<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(req){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req.open("GET",url,true);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req.onreadystatechange = callback2;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+req.send(null);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> }<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> function
+callback2(){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(req.readyState ==4){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+if(req.status ==200){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+parseMessage2();<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}else{<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+alert("Not able to retrieve description" + req.statusText);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> }<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> function
+parseMessage2(){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xmlDoc = req.responseXML.documentElement;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xSel = xmlDoc.getElementsByTagName_r('select');<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var street = document.getElementByIdx('three');<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+street.options.length=0;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+for(var i=0;i&lt;xSel.length;i++){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xValue = xSel[i].childNodes[0].firstChild.nodeValue;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var xText = xSel[i].childNodes[1].firstChild.nodeValue;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+var option = new Option(xText, xValue);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+try{<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+street.add(option);<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}catch(e){<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+}&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br/>
+
+&nbsp;<wbr> &lt;/script&gt;<br/>
+&lt;/head&gt;<br/>
+&lt;body&gt;<br/>
+&lt;%<br/>
+&nbsp;<wbr>String sql=" select * from&nbsp;<wbr>
+country ";</P>
+<p>&nbsp;<wbr>ResultSet rs =db.executeQuery(sql);<br/>
+&nbsp;<wbr><br/>
+&nbsp;<wbr>List dlist = new ArrayList();<br/>
+&nbsp;<wbr>List vlist = new ArrayList();<br/>
+&nbsp;<wbr>try {<br/>
+&nbsp;<wbr>&nbsp;<wbr>while (rs.next()) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>dlist.add((String)
+rs.getString("name"));<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>vlist.add(rs.getString("type"));<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>}<br/>
+&nbsp;<wbr>} catch (Exception e) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>e.printStackTrace();<br/>
+&nbsp;<wbr>}<br/>
+%&gt;<br/>
+&lt;div align="center"&gt;<br/>
+&lt;form name="form1" method="post"
+action=""&gt;<br/>
+&lt;table width="70%" border="0" cellspacing="0"
+cellpadding="0"&gt;<br/>
+&nbsp;<wbr>&lt;tr&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&lt;td
+align="center"&gt;国家城市选择&lt;/td&gt;<br/>
+
+&nbsp;<wbr>&lt;/tr&gt;<br/>
+&nbsp;<wbr>&lt;tr&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&lt;td&gt;&lt;select
+name="one" id="one"
+onChange="Change_Select()"&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;!--第一个下拉菜单--&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;option
+value="0"&gt;--请选择--&lt;/option&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;%<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>for
+(int i = 0; i &lt; dlist.size(); i++) {<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>%&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;option
+value="&lt;%=vlist.get(i)
+%&gt;"&gt;&lt;%=dlist.get(i)%&gt;&lt;/option&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;%<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>}<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>%&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&lt;/select&gt;
+&lt;select name="two" id="two"
+onChange="Change_Select2()"&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;!--第二个下拉菜单--&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;option
+value="0"&gt;--请选择--&lt;/option&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&lt;/select&gt;
+&lt;select name="three"
+id="three"&gt;<br/>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;!--第三个下拉菜单--&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&lt;option
+value="0"&gt;--请选择--&lt;/option&gt;<br/>
+
+&nbsp;<wbr>&nbsp;<wbr>&lt;/select&gt;&lt;/td&gt;<br/>
+
+&nbsp;<wbr>&lt;/tr&gt;<br/>
+&lt;/table&gt;<br/>
+&lt;/form&gt;<br/>
+&lt;/div&gt;<br/>
+&lt;/body&gt;<br/>
+&lt;/html&gt;</P>
+<p>&nbsp;<wbr></P>							
+		</div>
+						<!-- 正文结束 -->
+			  <div class="articalInfo">
+		      <!-- 分享到微博 {$t_blog} --></div>
+			  <div class="blogzz_zzlist borderc" id="blog_quote" style="display:none">加载中，请稍候......</div>
+			  <div id="loginFollow"></div>
+	</div>
+	<!--博文正文 end -->
+		<script type="text/javascript">
+			var voteid="";
+		</script>
+
+            </div>       
+            <div class="SG_connFoot"></div>
+          </div>
+</div>
+	<!--第二列start-->
+	
+	<!--第三列start-->
+	<div id="column_3" class="SG_colWnone"><div style="width:0px;height:0.1px;margin:0px;">&nbsp;&nbsp;</div></div>
+	<!--第三列end-->
+
+	
+    </div>
+   <!--主题内容结束 -->
+  
+
+	<div id="diggerFla" style="position:absolute;left:0px;top:0px;width:0px"></div>
+  </div>
+</div>
+<div id="swfbox"></div>
+<script id="PVCOUNTER_FORIE" type="text/javascript"></script>
+</body>
+<script type="text/javascript">
+var scope = {
+    $newTray : 1,
+    $setDomain : true,
+    $uid : "1392197254",
+    $PRODUCT_NAME : "blog7",      //blog7photo,blog7icp
+    $pageid : "article",
+    $key :  "b674501da808119952df5efaab030092",
+    $uhost : "admindomainname",
+    $ownerWTtype :"",
+    $private: {"cms":0,"hidecms":0,"blogsize":0,"ad":0,"sms":0,"adver":0,"tj":0,"p4p":0,"spamcms":0,"pageset":0,"invitationset":0,"top":0},
+    $is_photo_vip:0,
+		 $nClass:0,
+		 $articleid:"52fb3e8601009xjd",
+		 $sort_id:117,
+		 $cate_id:"",
+		 $isCommentAllow:0,
+		 $album_pic:"",
+		 $pn_x_rank:0,
+		 $x_quote_c:"6",
+		 $flag2008:"",
+		     component_lists:{"2":{"size":730,"list":[920]},"1":{"size":210,"list":[901,903,904,47]}},
+    formatInfo:1,
+    UserPic:[{"pid":null,"repeat":"no-repeat","align-h":"top","align-v":"top","apply":0},{"pid":null,"repeat":null,"align-h":null,"align-v":null,"apply":null},{"pid":null,"repeat":"no-repeat","align-h":"top","align-v":"top","apply":0}],
+    UserBabyPic:{"photoX":0,"photoY":0,"photoURL":null,"angle":0,"zoom":0,"maskX":0,"maskY":0,"maskURL":null,"frameURL":null},
+    UserColor:"",
+    backgroundcolor:"",
+    tpl:"5_16",
+    reclist:0    };
+var $encrypt_code = "246e2354555fc5d53e98c078c3557d59";
+</script>
+
+ 
+<script type="text/javascript">__load_js();</script>
+<script type="text/javascript">__render_page();</script>
+
+<script type="text/javascript" charset="utf-8">
+        bShare.addEntry({pic: "", title:"分享自流年似水  《ajax  实现3级联动菜单》", summary:"插入数据库语句  create table COUNTRY (   NAME VARCHAR2(100) not null,   TYPE NUMBER not null ) ; alter table COUNTR...  (来自 @头条博客)"});
+     </script>
+ 
+
+</html>

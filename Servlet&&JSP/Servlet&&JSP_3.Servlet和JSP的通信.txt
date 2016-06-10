@@ -1,0 +1,50 @@
+
+
+ 
+（1）从JSP调用Servlet可用<jsp:forward>，请求信息自动转到Servlet 
+FromJspToServlet.jsp 
+<html>
+    <body bgcolor="green">
+        <!-- Forward to a servlet, 这个servlet存放在web-inf的servlet目录下 -->
+        <jsp:forward page="/servlet/ServletToJSP" />
+    </body>
+</html> 
+
+（2）从Servlet调用JSP可以使用RequestDispatcher接口的forward(req, resp)方法，请求信息需要显示传递 
+ServletToJSP.java 
+
+import java.io.IOException; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+
+public class ServletToJSP extends HttpServlet { 
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        // 设置属性并将它分发给/servlet_jsp/ServletUseJsp.jsp处理
+        resp.setContentType("text/html;charset=gb2312");
+        req.setAttribute("servletName", "ServletToJSP");
+        // RequestDispatcher getRequestDispatcher(String path):
+        // Returns a RequestDispatcher object that acts as a wrapper for the resource located at the given path. 
+        getServletConfig().getServletContext().getRequestDispatcher("/servlet_jsp/ServletUseJsp.jsp").forward(req, resp);
+    } 
+} 
+
+（3）ServletUseJsp.jsp 
+<%@page contentType="text/html;charset=gb2312" %> 
+<html>
+    <meta context="text/html;charset=gb2312">
+    <head>
+        <title>Servlet使用JSP</title>
+    </head>
+    
+    <body bgcolor="gray">
+        <h2>Servlet使用JSP的例子</h2>
+        <h2>这个页面是被Servlet调用的</h2>
+    </body>
+</html> 
+  
+说明：以上相互调用也可以直接使用sendRedirect  
+
+文章出处：飞诺网(www.diybl.com):http://www.diybl.com/course/3_program/java/javashl/20100522/203618.html

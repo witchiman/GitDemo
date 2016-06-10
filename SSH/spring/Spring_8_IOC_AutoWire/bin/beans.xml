@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+<!--   <bean name="userDAO" class="com.hui.dao.impl.UserDAOImpl"  >
+  	<property name="daoId" value="2"></property>      
+  </bean>  -->
+  
+  <bean name="userDAO2" class="com.hui.dao.impl.UserDAOImpl"  >
+  	<property name="daoId" value="2"></property>      
+  </bean>  
+  
+  <!-- 自动装配autowire，其默认值为no，常用的有byName(值名要和类里的属性名一样)和byType(引用类只能设置一个)-->
+  <bean id="userService" class="com.hui.service.UserService"  autowire="byType"> 
+  </bean>
+ 
+</beans>

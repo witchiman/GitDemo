@@ -1,0 +1,777 @@
+[学习笔记]马士兵 Servlet & JSP(1.Servlet)
+www.diybl.com    时间 ： 2010-05-22  作者：匿名   编辑：Mr.阿布 点击：  131 [ 评论 ]
+
+
+ 
+1.HTTP协议基础测试（获取页面源代码） 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException; 
+/**
+ * HTTP协议基础测试
+ * 本程序将Tomcat首页的页面源代码拿下来
+ * 用此方法，我们可以将我们访问到的页面的内容都拿下来
+ * @author ykn
+ *
+ */
+public class HttpTest { 
+    public static void main(String[] args) {
+        
+        Socket s = null;
+        PrintWriter pw = null;
+        BufferedReader br = null;
+            
+        try {
+            // 建立连接端口，s指向本地机器tomcat服务器端口上
+            s = new Socket("127.0.0.1",8888);
+            // 对于本程序而言是输出，则相当于是准备向tomcat服务器端口写请求
+            pw = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
+            // 请求访问页面（此处等同于访问http://localhost:8888/）    
+            pw.println("GET / HTTP/1.1");
+            pw.println("Host: www.bjsxt.com");
+            pw.println("Content-Type:text/html");
+            pw.println("");
+            // 上一句表示请求内容结束
+            pw.flush();
+            // 上面这一段用于本程序向Tomcat服务器发出访问请求（get）
+            
+            
+            // 服务器端作出响应，对于本程序而言是输入
+            br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            String str = "";
+            // 将服务器端的响应信息打印输出（即将http://localhost:8888/页面代码源文件中的内容输出）
+            // 用此方法，我们可以将我们访问到的页面的内容都拿下来
+            while((str = br.readLine()) != null) {
+                System.out.println(str);
+            }
+            
+        } catch (UnknownHostException e) {
+            System.out.println("未知的主机异常。。。");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("IO异常。。。");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                    br = null;
+                }
+                if (pw != null) {
+                    pw.close();
+                    pw = null;
+                }
+                if (s != null) {
+                    s.close();
+                    s = null;
+                }
+            } catch (IOException e) {
+                System.out.println("IO异常。。。");
+                e.printStackTrace();
+            }            
+        }
+    } 
+} 
+ -------------------------------------------------------------------------------------------------------------------------------------- 
+2.最简单的servlet示例
+说明：
+①将HelloWorldServlet .class拷贝到test\WEB-INF\classes目录下（test是项目名）
+②在web.xml中添加对应的servlet处理语句：
+    <servlet>
+        <servlet-name>HW</servlet-name>
+        <servlet-class>HelloWorldServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HW</servlet-name>
+        <url-pattern>/abc</url-pattern>
+    </servlet-mapping>
+③在URL地址栏中以http://localhost:8888/test/abc形式访问
+④页面上显示结果：Hello World! 
+import java.io.IOException;
+import java.io.PrintWriter; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * 简单的servlet示例
+ * @author jukey
+ *
+ */
+public class HelloWorldServlet extends HttpServlet { 
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        out.println("Hello World!");
+    }
+    
+} 
+
+----------------------------------------------------------------------------------------------------------------------------------- 
+3.Servlet的生命周期测试 
+import java.io.IOException; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * Servlet的生命周期
+ * @author jukey
+ *
+ */
+public class TestLifeCycleServlet extends HttpServlet { 
+    // 处理请求
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doGet");
+    } 
+    // 实例化
+    // 注意：构造方法不能有返回值类型，连void也不行（否则就变成普通方法了）
+    public TestLifeCycleServlet() {
+        System.out.println("constructed");
+    }
+    
+    // 退出服务
+    public void destroy() {
+        System.out.println("destory");
+    } 
+    // 初始化
+    public void init() throws ServletException {
+        System.out.println("init");
+    } 
+} 
+/*
+测试结果（在tomcat服务器控制台窗口）：
+constructed
+init
+doGet
+*/ 
+
+------------------------------------------------------------------------------------------------------------------------------------ 
+4.读取指定的参数 
+①Threeparams.htm 
+<form id="form1" name="form1" method="post" action="servlet/Threeparams">
+    <table width="343" border="1">
+        <tr>
+            <td width="92">param1</td>
+            <td width="94"><input name="param1" type="text" id="param1"/></td>    
+        </tr>
+        <tr>
+            <td width="92">param2</td>
+            <td width="94"><input name="param2" type="text" id="param2"/></td>    
+        </tr>
+        <tr>
+            <td width="92">param3</td>
+            <td width="94"><input name="param3" type="text" id="param3"/></td>    
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="提交"/></td>    
+        </tr>
+    </table>
+</form> 
+②ThreeParams.java 
+import java.io.IOException;
+import java.io.PrintWriter; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * 读取指定的参数
+ * @author jukey
+ *
+ */
+public class ThreeParams extends HttpServlet { 
+    // 参数在传递过程中，在URL地址栏中显示出来
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter pw = response.getWriter();
+        pw.println(request.getParameter("param1"));
+        pw.println("<br>");
+        pw.println(request.getParameter("param2"));
+        pw.println("<br>");
+        pw.println(request.getParameter("param3"));
+        pw.println("<br>");
+    } 
+    // 参数在传递过程中，在URL地址栏中隐藏了
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doPost");
+        // 调用doGet方法
+        doGet(request,response);
+    } 
+} 
+---------------------------------------------------------------------------------------------------------------------------------- 
+
+5.读取所有的参数 
+①Showparameters.htm 
+<html>
+    <head>
+        <title>A sample show parameters</title>
+    </head>
+    <body>A sample show parameters
+    
+        <form method="post" action="servlet/ShowParameters">
+            Item Number:<input type="text" name="itemNum"><br>
+            Quantity:<input type="text" name="quantity"><br>
+            Price each:<input type="text" name="price" value="$"><br>
+            First Name:<input type="text" name="firstName"><br>
+            Last Name:<input type="text" name="lastName"><br>
+            Middle Initial:<input type="text" name="initial"><br>
+            
+            Shipping Address:<textarea name="address" row="3" cols="40"></textarea><br>
+            Credit Card:<br>
+            <!--单选框示例-->
+            &nbsp;&nbsp;<input type="radio" name="cardType" value="Visa">Visa<br>
+            &nbsp;&nbsp;<input type="radio" name="cardType" value="Master Card">Master Card<br>
+            &nbsp;&nbsp;<input type="radio" name="cardType" value="Amex">Amex<br>
+            &nbsp;&nbsp;<input type="radio" name="cardType" value="Discover">Discover<br>
+            &nbsp;&nbsp;<input type="radio" name="cardType" value="Java SmartCard">Java SmartCard<br>
+            <!--密码输入框-->
+            Credit Card password:<input type="password" name="cardNum"><br>
+            Repeat Credit Card password:<input type="password" name="cardNum"><br><br>
+            
+            <center><input type="submit" value="Submit Order"></center>
+            
+        </form>
+    </body>
+</html> 
+②ShowParameters.java 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * 读取所有的参数
+ * @author jukey
+ *
+ */
+public class ShowParameters extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        
+        String title = "Reading All Request Parameters";
+        out.println("init");
+        out.println("<html><head><title>读取所有参数</title></head>"
+                + title
+                + "\n" + "<table border=1 align=center>\n"
+                + "<TH>Parameter Name<TH>Parameter Value(s)");
+        
+        // Returns an Enumeration of String objects containing the names of the parameters contained in this request. 
+        Enumeration paramNames = request.getParameterNames();
+        // Tests if this enumeration contains more elements. 
+        while(paramNames.hasMoreElements()) {
+            // Returns the next element of this enumeration if this enumeration object has at least one more element to provide. 
+            String paraName = (String)paramNames.nextElement();
+            out.println("<tr><td>" + paraName + "\n<td>");
+            // Returns an array of String objects containing all of the values the given request parameter has, or null if the parameter does not exist. 
+            // 注意参数paraName（变量）不能加双引号，否则就是找参数名叫paraName的对应值了。
+            String[] paramValues = request.getParameterValues(paraName);
+            // 这个参数只有一个值
+            if(paramValues.length == 1) {
+                String paramValue = paramValues[0];
+                if(paramValue.length() == 0) {
+                    out.println("<I>no value</I>");
+                } else {
+                    out.println(paramValue);
+                }
+            }else {
+                // 这个参数有好几条值
+                out.println("<UL>");
+                for(int i = 0; i < paramValues.length; i++) {
+                    out.println("<LI>" + paramValues[i]);
+                }
+                out.println("</UL>");
+            }
+        }
+        out.println("</table>\n<body></html>");
+    } 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doPost");
+        doGet(request,response);
+    } 
+} 
+-------------------------------------------------------------------------------------------------------------------------------------------- 
+6.Cookies的设置和读取 
+①设置Cookie到客户端 
+import java.io.IOException;
+import java.io.PrintWriter; 
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * 设置Cookie到客户端
+ * @author jukey
+ *
+ */
+public class SetCookies extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 向客户端写入Cookie，共6个
+        for(int i = 0; i < 3; i++) {
+            // 3个没有设置时间的Cookie，属于本窗口及其子窗口
+            Cookie cookie = new Cookie("Session-Cookie-" + i, "Cookie-Value-S" + i);
+            response.addCookie(cookie);
+            // 以下3个Cookie设置了时间（3600秒，1小时），属于文本，别的窗口也可以访问到这些Cookie
+            cookie = new Cookie("Persistent-Cookie-" + i, "Cookie-Value-P" + i);
+            cookie.setMaxAge(3600);
+            response.addCookie(cookie);
+        }
+        
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        String title = "Setting Cookies";
+        out.println("<html><head><title>设置Cookie</title></head>"
+                + "<body>" + title + "<br>"
+                + "There are six cookies associates with this page.<br>"
+                + "to see them,visit the <a href=\"ShowCookies\">\n"
+                + "<code>ShowCookies</code> servlet</a>"
+                + "</body></html>");
+    } 
+} 
+
+②读取客户端的Cookies 
+import java.io.IOException;
+import java.io.PrintWriter; 
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * 读取客户端的Cookies
+ * @author jukey
+ *
+ */
+public class ShowCookies extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter pw = response.getWriter();
+        String title = "Active Cookies";
+        pw.println("init");
+        pw.println("<html><head><title>读取客户端</title></head>"
+                + title
+                + "\n" + "<table border=1 align=center>\n"
+                + "<TH>Cookie Name<TH>Cookie Value" + "<br>");
+        
+        // 读取客户端的所有Cookie
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null) {
+            Cookie cookie;
+            for(int i = 0; i < cookies.length; i++) {
+                cookie = cookies[i];
+                pw.println("<tr>\n" + "<td>" + cookie.getName() +"</td>\n"
+                        + "<td>" + cookie.getValue() +"</td></tr>\n");
+            }
+        }
+        pw.println("</table>\n<body><html>");
+    } 
+} 
+-------------------------------------------------------------------------------------------------------------------------------------- 
+7.Session的测试 
+①演示Servlet API中的session管理机制（常用方法） 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession; 
+/**
+ * 演示Servlet API中的session管理机制（常用方法）
+ * @author jukey
+ *
+ */
+public class SessionInfoServlet extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        // Returns the current session associated with this request, or if the request does not have a session, creates one. 
+        HttpSession mySession = request.getSession(true);
+        
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String title = "Session Info Servlet";
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Session Info Servlet</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h3>Session Infomation</h3>");
+        
+        // Returns true if the client does not yet know about the session or if the client chooses not to join the session. 
+        out.println("New Session:" + mySession.isNew() + "<br>");
+        // Returns a string containing the unique identifier assigned to this session.
+        out.println("Session Id:" + mySession.getId() + "<br>");
+        // Returns the time when this session was created, measured in milliseconds since midnight January 1, 1970 GMT. 
+        out.println("Session Create Time:" + new Date(mySession.getCreationTime()) + "<br>");
+        out.println("Session Last Access Time:" + new Date(mySession.getLastAccessedTime()) + "<br>");
+        
+        out.println("<h3>Request Infomation</h3>");
+        // Returns the session ID specified by the client.
+        out.println("Session Id From Request:" + request.getRequestedSessionId() + "<br>");
+        // Checks whether the requested session ID came in as a cookie. 
+        out.println("Session Id Via Cookie:" + request.isRequestedSessionIdFromCookie() + "<br>");
+        // Checks whether the requested session ID came in as part of the request URL. 
+        out.println("Session Id Via URL:" + request.isRequestedSessionIdFromURL() + "<br>");
+        // Checks whether the requested session ID is still valid. 
+        out.println("Valid Session Id:" + request.isRequestedSessionIdValid() + "<br>");
+        
+        out.println("<a href=" + response.encodeURL("SessionInfoServlet") + ">refresh</a>");
+        out.println("</body></html>");
+        out.close();
+    } 
+} 
+②Session追踪 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession; 
+/**
+ * Session追踪
+ * 如果浏览器支持Cookie，创建Session的时候会把SessionId保存在Cookie中
+ * 否则必须自己编程使用URL重写的方式实现Session：response.encodeURL()
+ * @author jukey
+ *
+ */ 
+public class ShowSession extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        String str = "Session Tracking Example";
+        String heading;
+        
+        // 如果会话已经存在，则返回一个HttpSession；否则创建一个新的
+        HttpSession session = request.getSession(true);
+        // 从当前session中读取属性accessCount的值
+        Integer accessCount = (Integer)session.getAttribute("accessCount");
+        if(accessCount == null) {
+            accessCount = new Integer(0);
+            heading = "Welcome newUser";
+        } else {
+            heading = "Welcome Back";
+            accessCount = new Integer(accessCount.intValue() + 1);
+        }
+        // 向当前session中插入键（key，属性）值（value）对
+        // Binds an object to this session, using the name specified.
+        session.setAttribute("accessCount", accessCount);
+        
+        out.println("<html><head><title>Session追踪</title></head>"
+                + "<body>" + heading + "<br>"
+                + "<h2>Information on Your Session</h2><br>"
+                + "\n" + "<table border=1 align=center>\n"
+                + "<TH>Info Type<TH>Value" + "<br>"
+                + "<tr>\n" + "<td>ID</td>\n"
+                + "<td>" + session.getId() +"</td></tr>\n"
+                + "<tr>\n" + "<td>CreatTime</td>\n"
+                + "<td>" + new Date(session.getCreationTime()) +"</td></tr>\n"
+                + "<tr>\n" + "<td>LastAccessTime</td>\n"
+                + "<td>" + new Date(session.getLastAccessedTime()) +"</td></tr>\n"
+                + "<tr>\n" + "<td>Number of Access</td>\n"
+                + "<td>" + accessCount +"</td></tr>\n"
+                + "</body></html>");
+    } 
+} 
+-------------------------------------------------------------------------------------------------------------------------------- 
+8.Application测试 
+import java.io.IOException;
+import java.io.PrintWriter; 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * Application测试
+ * 用于保存整个web应用的生命周期内都可以访问的数据
+ * 可供多个不同窗口访问，可作为某一页面被总共访问次数的计数器（比如网站首页的访问量）
+ * @author jukey
+ *
+ */
+public class TestServletContext extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        
+        // Returns a reference to the ServletContext in which this servlet is running. 
+        ServletContext application = this.getServletContext();
+        // 从当前application中读取属性accessCount的值
+        Integer accessCount = (Integer)application.getAttribute("accessCount");
+        if(accessCount == null) {
+            accessCount = new Integer(0);
+        } else {
+            accessCount = new Integer(accessCount.intValue() + 1);
+        }
+        // 向当前application中插入键（key，属性）值（value）对
+        application.setAttribute("accessCount", accessCount);
+        
+        out.println("<html><head><title>ServletContext测试</title></head><br>"
+                + "<body><td>" + accessCount +"</td>\n"
+                + "</body></html>");
+        
+    } 
+} 
+--------------------------------------------------------------------------------------------------------------------------------------------- 
+9.Servlet类本身位于包中的情况 
+package com.bjsxt.servlet; 
+import java.io.IOException;
+import java.io.PrintWriter; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * Servlet类本身位于包中的情况
+ * classes中要class文件及其各级目录一起放置
+ * web中如下设置：<servlet-class>com.bjsxt.servlet.HelloWorldServlet2</servlet-class>
+ * @author jukey
+ *
+ */
+public class HelloWorldServlet2 extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        out.println("Hello World!");
+        
+    } 
+} 
+
+-------------------------------------------------------------------------------------------------------------------------------- 
+10.在Servlet中直接连接数据库，并查询显示信息 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * 在Servlet中直接连接数据库，并查询显示信息
+ * 每个application都应该有自己的驱动包，放在各自项目的WEB-INF\lib\目录下
+ * @author jukey
+ *
+ */
+public class ShowRs extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        out.println("<table border=1>");
+        out.println("<tr><td>Content:</td></tr>"); 
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bbs?user=root&password=mysql");
+            stmt = conn.createStatement();
+            String sql = "select * from article";
+            rs = stmt.executeQuery(sql);
+            while(rs.next()) {
+                out.println("<tr>");
+                out.println("<td>" + rs.getString("cont") + "</td>");
+                out.println("</tr>");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+             if (rs != null) {
+                 try {
+                     rs.close();
+                     rs = null;
+                 } catch (SQLException sqlEx) { 
+                     sqlEx.printStackTrace();
+                 }
+             }
+             if (stmt != null) {
+                 try {
+                     stmt.close();
+                     stmt = null;
+                 } catch (SQLException sqlEx) { 
+                     sqlEx.printStackTrace();
+                 }
+             }
+             if (conn != null) {
+                 try {
+                     conn.close();
+                     conn = null;
+                 } catch (SQLException sqlEx) { 
+                     sqlEx.printStackTrace();
+                 }
+             }
+        }
+    } 
+} 
+
+---------------------------------------------------------------------------------------------------------------------------------- 
+11.Servlet中使用专门的数据库操作类DB 
+①Servlet中使用专门的数据库操作类DB，这样，本程序就比前一个显得简单清楚 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement; 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse; 
+/**
+ * Servlet中使用专门的数据库操作类DB，这样，本程序就比前一个显得简单清楚
+ * DB类，专门跟数据库打交道，分工明确，各司其职
+ * @author jukey
+ *
+ */
+public class ShowRsUseBean extends HttpServlet { 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=gb2312");
+        PrintWriter out = response.getWriter();
+        out.println("<table border=1>");
+        out.println("<tr><td>Content:</td></tr>");
+        
+        // 直接调用DB中的静态方法来为本类服务
+        Connection conn = DB.getConnection();
+        Statement stmt = DB.getStatement(conn);
+        String sql = "select * from article";
+        ResultSet rs = DB.getResultSet(stmt, sql);
+        
+        try {
+            while(rs.next()) {
+                out.println("<tr>");
+                out.println("<td>" + rs.getString("cont") + "</td>");
+                out.println("</tr>");
+            }
+        } catch (SQLException e) {
+            System.out.println("执行SQL遍历过程中出现了错误。。。");
+            e.printStackTrace();
+        } finally {
+            // 直接调用DB中的静态方法来关闭一系列被打开的资源
+            DB.close(rs);
+            DB.close(stmt);
+            DB.close(conn);
+        }
+    } 
+} 
+
+②专门跟数据库打交道的类 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement; 
+/**
+ * 专门跟数据库打交道的类
+ * @author ykn
+ *
+ */
+public class DB { 
+    // 获取连接
+    public static Connection getConnection() {
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bbs?user=root&password=mysql");
+        } catch (ClassNotFoundException e) {
+            System.out.println("驱动程序未找到，请加入mysql.jdbc的驱动包。。。");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("执行数据库连接过程中出现了错误。。。");
+            e.printStackTrace();
+        }
+        return conn;
+    }
+    
+    // 获取表达式语句
+    public static Statement getStatement(Connection conn) {
+        Statement stmt = null;
+        try {
+            if (conn != null) {
+                stmt = conn.createStatement();
+            }
+        } catch (SQLException e) {
+            System.out.println("执行获取表达式语句过程中出现了错误。。。");
+            e.printStackTrace();
+        }        
+        return stmt;
+    }
+    
+    // 获取查询的结果集
+    public static ResultSet getResultSet(Statement stmt, String sql) {
+        ResultSet rs = null;
+        try {
+            if (stmt != null) {
+                rs = stmt.executeQuery(sql);
+            }
+        } catch (SQLException e) {
+            System.out.println("执行查询过程中出现了错误。。。");
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    // 关闭连接
+    public static void close(Connection conn) {
+        try {
+            if (conn != null) {
+                conn.close();
+                conn = null;
+            }
+        } catch (SQLException e) {
+            System.out.println("执行关闭数据库连接过程中出现了错误。。。");
+            e.printStackTrace();
+        }        
+    }
+    
+    // 关闭表达式语句
+    public static void close(Statement stmt) {
+        try {
+            if (stmt != null) {
+                stmt.close();
+                stmt = null;
+            }
+        } catch (SQLException e) {
+            System.out.println("执行关闭表达式语句过程中出现了错误。。。");
+            e.printStackTrace();
+        }        
+    }
+    
+    // 关闭结果集
+    public static void close(ResultSet rs) {
+        try {
+            if (rs != null) {
+                rs.close();
+                rs = null;
+            }
+        } catch (SQLException e) {
+            System.out.println("执行关闭结果集过程中出现了错误。。。");
+            e.printStackTrace();
+        }        
+    }
+} 
+
+文章出处：飞诺网(www.diybl.com):http://www.diybl.com/course/3_program/java/javashl/20100522/203620.html

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+  <bean id="v" class="com.hui.spring.factory.Car">
+  </bean>
+  
+  <!--  //v=com.hui.spring.factory.Car  -->
+
+
+</beans>

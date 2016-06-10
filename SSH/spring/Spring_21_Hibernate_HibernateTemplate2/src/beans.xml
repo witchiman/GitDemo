@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans     	 
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+   <context:annotation-config/>
+   <context:component-scan base-package="com.hui"></context:component-scan>
+   
+   
+   <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"> 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/mysql"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+
+	
+ 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"/>
+        <!-- <property name="annotatedClasses">
+          <list>
+            <value>com.hui.model.User</value>
+            <value>com.hui.model.Log</value>
+          </list>
+       </property> -->
+       <!-- 如此设置后， 不用再新加包 -->
+       <property name="packagesToScan">
+       		<list>
+       			<value>com.hui.model</value>
+       		</list>
+       </property>
+       <property name="hibernateProperties">
+          <props>
+          	<prop key="hibernate.dialect">
+          		org.hibernate.dialect.MySQL5Dialect
+          	</prop>
+          	<prop key="hibernate.show_sql">true</prop> 
+          </props>
+       </property>       
+    </bean>
+	   
+   
+    
+     
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+  		<property name="sessionFactory" ref="sessionFactory" />
+	</bean> 
+	<aop:config>
+		<aop:pointcut expression="execution(public * com.hui.service..*.**(..))" id="bussinessServer"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="bussinessServer"/>
+	</aop:config>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="getUser" read-only="true"/>
+			<tx:method name="add*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	 
+	 	  
+	 
+</beans>

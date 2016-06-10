@@ -1,0 +1,24 @@
+<HTML>
+	<HEAD>
+		<TITLE>blur css</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<SCRIPT>
+  		function handlechange(obj)
+  		{
+    			with(obj.filters(0))
+    			{
+      				if (strength<255)
+      				{
+       					strength +=2;
+       					//direction +=45;
+      				}
+    			}
+  		}
+    </SCRIPT>
+	</HEAD>
+	<BODY>
+		<P>
+			<IMG id=img1 onfilterchange=handlechange(this) style="FILTER: wave(strength=1)" src="images/02.jpg">
+		</P>
+	</BODY>
+</HTML>

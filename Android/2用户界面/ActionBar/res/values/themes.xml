@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomActionBarTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/CustomBackground</item>
+    </style>
+
+    <style name="CustomBackground" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background"> @drawable/actionbar_background</item>
+    </style>
+</resources>

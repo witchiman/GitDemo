@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+  
+  <bean name="userDAO" class="com.hui.dao.impl.UserDAOImpl"  >
+  	<property name="daoId" value="2"></property>      
+  </bean>  
+   
+  <!--  生命周期,lazy-init设置为true时定义工厂时不对该类进行初始化，用init 和destory 时scope不要设置为prototype -->
+  <bean id="userService" class="com.hui.service.UserService"  init-method="init" destroy-method="destory" > 
+  </bean>
+ 
+</beans>

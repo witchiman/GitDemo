@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LearLayout</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_relative_layout">RelativeLayout</string>
+    <string name="title_activity_framlayout_aty">FramlayoutAty</string>
+    <string name="title_activity_framelayout_aty">FramelayoutAty</string>
+</resources>

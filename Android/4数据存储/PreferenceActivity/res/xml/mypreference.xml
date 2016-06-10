@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="checkbox"
+        android:title="是否开启"
+        android:summaryOn="已经打开"
+        android:summaryOff="已经关闭" />
+    <ListPreference
+        android:key="list"
+        android:title="请选择一个选项"
+        android:summary="点击选择"
+        android:entries="@array/entries"
+        android:entryValues="@array/values" />
+    <EditTextPreference
+        android:key="edit"
+        android:title="请输入"
+        android:summary="在此输入"
+        android:dialogTitle="请输入个人信息："
+        android:dialogMessage="注意保密哟！"/>
+</PreferenceScreen>

@@ -1,0 +1,47 @@
+/* CSS Document */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+#main {
+	border: thin solid #000000;	
+	width:1000px;
+}
+
+#ad {
+	height: 200px;
+	border: thick inset #00CC00;
+	width: auto;
+}
+
+#left {
+	background-color: #0099FF;	
+	width:300px;
+	float:left;
+}
+
+#right {
+	background-color: #333399;
+	width:690px;
+	float:right;
+}
+
+#right1 {
+	background-color: #CCFF00;
+	width:40%;
+	float:left;
+}
+
+#right2 {
+	background-color: #CCFF00;
+	width:50%;
+	float:right;
+}
+
+h1 {
+	background-color: #FF0099;
+	font-size:24px;
+	text-align:left;
+}

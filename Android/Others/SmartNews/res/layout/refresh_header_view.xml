@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/iv_refresh_arr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/common_listview_headview_red_arrow" />
+
+        <TextView
+            android:id="@+id/tv_refresh_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="100dp"
+            android:layout_toRightOf="@id/iv_refresh_arr"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="下拉刷新"
+            android:textColor="#f00"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_refresh_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/iv_refresh_arr"
+            android:text="最后刷新时间2015-4-20 12:00"
+            android:textSize="15sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:indeterminateDrawable="@drawable/custom_progress_background"
+            android:visibility="invisible"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+</LinearLayout>

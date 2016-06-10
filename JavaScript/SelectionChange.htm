@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body>
+ <form action="2.htm" method="post" name="subject">
+	 <select name="id" onChange="JavaScript:Subject_Sub()">
+	   <option value="">--=[ 选择专题 ]=--</option>
+	   
+	   <option value="0">生活时尚</option>     
+    
+	   <option value="2">逆风飞飏</option>     
+    
+	   <option value="3">电影海报</option>     
+    
+	   <option value="4">Linux</option>     
+    
+	   <option value="5">IT动态</option>     
+    
+	   <option value="7">手机天地</option>     
+    
+	   <option value="8">英语学习</option>     
+   </select>
+    
+ </form>
+	   <script language="JavaScript">
+	   function Subject_Sub(){
+		   if (document.subject.id[document.subject.id.selectedIndex].value!=""){
+			   alert("changed!");
+			   document.subject.submit();
+			   return;
+		   }
+	   }
+	   </Script>
+	   
+</body>
+</html>

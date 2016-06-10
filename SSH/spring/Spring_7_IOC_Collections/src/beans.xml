@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd"> 
+  <bean name="u" class="com.hui.dao.impl.UserDAOImpl" scope="prototype">    
+  	<property name="sets">
+  		<set>
+  			<value>1</value>
+  			<value>2</value>
+  		</set>
+  	</property>
+  	<property name="lists">
+  		<list>
+  			<value>1</value>
+  			<value>2</value>
+  			<value>3</value>
+  		</list>
+  	</property>
+  	<!-- 还有properties，其实它实现了map -->
+  	<property name="maps">
+  		<map>
+  			<entry key="1" value="1"></entry>
+  			<entry key="2" value="2"></entry>
+  			<entry key="3" value="3"></entry>
+  			<entry key="4" value="4"></entry>
+  		</map>
+  	</property>  
+  </bean>  
+
+  <bean id="userService" class="com.hui.service.UserService">
+  	<!-- <property name="userDAO" ref="u"></property> -->
+  	<constructor-arg> <ref bean="u" /> 	</constructor-arg>
+  </bean>
+ 
+</beans>

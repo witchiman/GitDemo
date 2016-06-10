@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+  <bean name="u" class="com.hui.dao.impl.UserDAOImpl" >      
+  </bean>  
+  <!-- bean的生存范围，很少配置，默认的是singleton,常用的是singleton和prototype--> 
+  <bean id="userService" class="com.hui.service.UserService" scope="prototype" >
+  	<!-- <property name="userDAO" ref="u"></property> -->
+  	<constructor-arg> <ref bean="u" /> 	</constructor-arg>
+  </bean>
+ 
+</beans>

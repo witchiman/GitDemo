@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+</head>
+<body>
+<form id="form1" name="form1" method="get" action="index.html">
+  <table width="100%" border="1">
+    <tr>
+      <td width="13%">用户名：</td>
+      <td width="87%"><input name="username" type="text" id="username" /></td>
+    </tr>
+    <tr>
+      <td>密码：</td>
+      <td><input name="password1" type="password" id="password1" /></td>
+    </tr>
+    <tr>
+      <td>密码确认：</td>
+      <td><input name="password12" type="password" id="password12" /></td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td><input type="radio" name="sex" value="radiobutton" />
+        男
+        <input type="radio" name="sex" value="radiobutton" />
+        女</td>
+    </tr>
+    <tr>
+      <td>来自于：</td>
+      <td><select name="city" id="city">
+          <option value="1">beijing</option>
+          <option value="2" selected="selected">sh</option>
+          <option>sz</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>自我介绍</td>
+      <td><textarea name="intro" cols="80" rows="12" id="intro"></textarea></td>
+    </tr>
+    <tr>
+      <td>爱好：</td>
+      <td><input name="interest" type="checkbox" id="interest" value="java" />
+        JAVA
+        <input name="interest" type="checkbox" id="interest" value="checkbox" />
+        C++
+        <input name="interest" type="checkbox" id="interest" value="dotnet" />
+        .NET
+        <input name="interest" type="checkbox" id="interest" value="checkbox" />
+        GMAE
+        <input name="interest" type="checkbox" id="interest" value="checkbox" />
+        NOGAME
+        <input name="interest" type="checkbox" id="interest" value="checkbox" />
+        CIGAR
+        <input name="interest" type="checkbox" id="interest" value="checkbox" />
+        BULLET</td>
+    </tr>
+    <tr>
+      <td>爱好2：</td>
+      <td><select name="select" size="8" multiple="multiple">
+          <option value="1">JAVA1</option>
+          <option value="2">JAVA2</option>
+          <option value="3">JAVA3</option>
+          <option value="4">JAVA4</option>
+          <option value="5">JAVA5</option>
+          <option value="6">JAVA6</option>
+          <option value="7">JAVA7</option>
+          <option value="8">JAVA8</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="Submit" value="提交" />
+        <input type="reset" name="Submit2" value="重置" />
+        <input type="button" name="Submit3" value="按钮" />
+        <input type="image" name="imageField" src="images/eclipse.jpg" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
