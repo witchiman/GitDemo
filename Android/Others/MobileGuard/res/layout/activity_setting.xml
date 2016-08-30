@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hui="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        style="@style/TitleStyle"
+        android:text="设置中心"/>
+    <com.hui.mobileguard.view.SettingItemView
+        android:id="@+id/siv_autoupdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        hui:setting_title="自动更新"
+        hui:desc_on="自动更新打开"
+        hui:desc_off="自动更新关闭"/>
+    <com.hui.mobileguard.view.SettingItemView
+        android:id="@+id/siv_caller_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        hui:setting_title="电话归属地显示设置"
+        hui:desc_on="归属地显示打开"
+        hui:desc_off="归属地显示关闭"/>
+    <com.hui.mobileguard.view.SettingItemClick
+        android:id="@+id/sic_address_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.hui.mobileguard.view.SettingItemClick
+        android:id="@+id/sic_address_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.hui.mobileguard.view.SettingItemView
+        android:id="@+id/siv_rocket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        hui:setting_title="发送小火箭设置"
+        hui:desc_on="小火箭打开"
+        hui:desc_off="小火箭关闭"/>
+</LinearLayout>

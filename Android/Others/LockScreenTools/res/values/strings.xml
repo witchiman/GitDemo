@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LockScreenTools</string>
+    <string name="sample_device_admin" >我的超级一键工具</string>
+    <string name="sample_device_admin_description" >超牛逼的工具呀！谁用谁知道。</string>
+</resources>

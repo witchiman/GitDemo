@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hui.mobileguard.activity.ToolsActivity">
+    <TextView
+        android:text="高级工具"
+        style="@style/TitleStyle"/>
+    <TextView
+        android:text="电话归属地查询"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:drawablePadding="5dp"
+        android:padding="10dp"
+        android:background="@drawable/tools_button"
+        android:onClick="queryNumber"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="程序锁"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:drawablePadding="5dp"
+        android:padding="10dp"
+        android:background="@drawable/tools_button"
+        android:onClick="appLock"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content" />
+</LinearLayout>
