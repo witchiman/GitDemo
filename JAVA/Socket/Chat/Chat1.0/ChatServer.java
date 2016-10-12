@@ -1,3 +1,4 @@
+package com.hui;
 import java.net.*;
 import java.util.*;
 import java.io.*;
@@ -6,6 +7,7 @@ import java.awt.event.*;
 
 public class ChatServer extends Frame
 {
+	public static int count = 1;
 	TextArea ta = new TextArea();
 	public void launchFrame()
 	{
@@ -37,7 +39,8 @@ public class ChatServer extends Frame
 		while(true)
 		{
 			Socket s = server.accept();
-			cClient.add( new ClientConn(s) );
+			
+			cClient.add( new ClientConn(s, count++) );
 			ta.append("NEW-CLIENT " + s.getInetAddress() + ":" + s.getPort());
 			ta.append("\n" + "CLIENTS-COUNT: " + cClient.size() + "\n\n");
 		}
@@ -46,9 +49,11 @@ public class ChatServer extends Frame
 	class ClientConn implements Runnable
 	{
 		Socket s = null;
-		public ClientConn(Socket s)
+		int count;
+		public ClientConn(Socket s, int count)
 		{
 			this.s = s;
+			this.count = count;
 			(new Thread(this)).start();
 		}
 		
@@ -86,8 +91,8 @@ public class ChatServer extends Frame
 						ClientConn cc = (ClientConn)it.next();
 						if(this != cc)
 						{
-							cc.send(str);
-						}
+							cc.send("”√ªß" + count + " :" + str);
+						} 
 					}
 					str = dis.readUTF();
 					//send(str);

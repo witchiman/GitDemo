@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-template <typename T, int size=100>   //默认size为100，当明确类型为类时可用template <class T,...>
+template <typename T, int size=100>   //默认size为100，作为为模板类时可用template <class T,...>
 class Stack
 {
 private:

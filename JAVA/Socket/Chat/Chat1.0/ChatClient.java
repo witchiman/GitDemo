@@ -1,3 +1,4 @@
+package com.hui;
 import java.io.*;
 import java.net.*;
 import java.awt.*;
@@ -21,7 +22,7 @@ public class ChatClient extends Frame
 						if(sSend.trim().length() == 0) return;
 						ChatClient.this.send(sSend);
 						tf.setText("");
-						ta.append(sSend + "\n");
+						ta.append("我: " + sSend + "\n");
 					}
 					catch (Exception e) { e.printStackTrace(); }
 				}
@@ -68,6 +69,7 @@ public class ChatClient extends Frame
 								new InputStreamReader(System.in));
 		ChatClient cc = new ChatClient();
 		String str = br.readLine();
+		/*接收从控制台输入的消息*/
 		while(str != null && str.length() != 0)
 		{
 			cc.send(str);
