@@ -27,8 +27,8 @@ int main(void)
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if(sock == -1)
     {
-	perror("sock()");
-	exit(EXIT_FAILURE);
+		perror("sock()");
+		exit(EXIT_FAILURE);
     }
 
     memset(&local_addr, 0, sizeof(struct sockaddr_in));
@@ -39,37 +39,37 @@ int main(void)
     ret = bind(sock, (struct sockaddr *)&local_addr, sizeof(local_addr));
     if(ret == -1)
     {
-	perror("bind()");
-	exit(EXIT_FAILURE);
+		perror("bind()");
+		exit(EXIT_FAILURE);
     }
 
     printf("The server has beed ready!\n");
     while(1)
     {
         FD_ZERO(&readfd);   //文件描述符集合清零
-	FD_SET(sock, &readfd);   //将套接字加入读集合
+		FD_SET(sock, &readfd);   //将套接字加入读集合
 
 	/*监听是否有数据到来*/
-	ret = select(sock+1, &readfd, NULL, NULL, &timeout);
+		ret = select(sock+1, &readfd, NULL, NULL, &timeout);
         switch(ret)
-	{
-	    case -1:
-		perror("select()");
-		break;
-	    case 0:
-		break;
-	    default:
-		/*有数据到来*/
-	        if(FD_ISSET(sock, &readfd))
 		{
-		    recvfrom(sock, buf, 32, 0,(struct sockaddr *) &from_addr, &from_len);
-		    if(strstr(buf, IP_FOUND)) //判断是否IP_FOUND
-		    {
-                        memcpy(buf, IP_FOUND_ACK, strlen(IP_FOUND_ACK));
-			sendto(sock, buf, strlen(buf), 0, (struct sockaddr *)&from_addr, from_len); //发送给客户端
-		    }
-		}	    
-	}
+			case -1:
+				perror("select()");
+				break;
+			case 0:
+				break;
+			default:
+			/*有数据到来*/
+				if(FD_ISSET(sock, &readfd))
+				{
+					recvfrom(sock, buf, 32, 0,(struct sockaddr *) &from_addr, &from_len);
+					if(strstr(buf, IP_FOUND)) //判断是否IP_FOUND
+					{
+						memcpy(buf, IP_FOUND_ACK, strlen(IP_FOUND_ACK));
+						sendto(sock, buf, strlen(buf), 0, (struct sockaddr *)&from_addr, from_len); //发送给客户端
+					}
+				}	    
+		}
     }
 
  printf("SERVER: IP FOUND\n");

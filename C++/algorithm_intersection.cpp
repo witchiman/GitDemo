@@ -57,7 +57,7 @@ void intersection(node *&La, node *Lb)
               pb = pb->next;
         if(pb)  //有相同元素
         {
-            if(!pre)  //La中第一个元素为共同元素
+            if(!pre)  //La中开始的元素为共同元素
                 La = pa->next;
             else
                 pre->next = pa->next;
@@ -66,7 +66,7 @@ void intersection(node *&La, node *Lb)
             pa = pa->next;
             free(q);
         }
-        else             //比较冤魂La的第一个元素，比较La的下一个元素
+        else             //La中的的一个元素逐一与Lb比较完，其下一个元素开始逐一与Lb中的元素比较
         {
             pre = pa;
             pa = pa->next;
@@ -81,14 +81,13 @@ int main( )
     int b[] = {5, 15, 35, 25};
     node *la = NULL;
     node *lb = NULL;
-    node *p;
-
+    
     initlist(la, a, sizeof(a)/sizeof(int));
     initlist(lb, b, sizeof(b)/sizeof(int));
 
-
     intersection(la, lb);
-
+    
+	node *p;
     p = la;
     while(p)  //输出处理后的La
     {
