@@ -12,7 +12,7 @@ func main()  {
 	if err != nil {
 		log.Print(err)
 	}
- 	done := make(chan struct{})
+	done := make(chan struct{})
 
 	go func() {
 		io.Copy(os.Stdout, conn) // 忽略错误
@@ -20,8 +20,8 @@ func main()  {
 		done <- struct {}{}
 	}()
 
-	myioCopy(conn, os.Stdin)  //打印错误
-	conn.Close()
+	go myioCopy(conn, os.Stdin)
+	defer conn.Close()
 	<-done
 }
 func myioCopy(dst io.Writer, src io.Reader) {
@@ -29,5 +29,3 @@ func myioCopy(dst io.Writer, src io.Reader) {
 		log.Fatal(err)
 	}
 }
-
-

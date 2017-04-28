@@ -58,26 +58,26 @@ int main(int arg, char *argv[])
     while(1)
     {
         int addrlen = sizeof(struct sockaddr);
-	sc = accept(ss, (struct sockaddr*)&client_addr, &addrlen);
-	if(sc == -1)
-	{
-	    continue;
-	}
-       
-        printf("Server has startuped:\n");  
-      
-        pid = fork();
-	if(pid == 0)
-	{
-	    close(ss);
-	    process_conn_3(sc);
-	} else
-	{   
-            free(vs); //对应于readv和writev函数
-            close(sc);
-	}
+        sc = accept(ss, (struct sockaddr*)&client_addr, &addrlen);
+        if(sc == -1)
+        {
+            continue;
+        }
+        
+            printf("Server has startuped:\n");  
+        
+            pid = fork();
+        if(pid == 0)
+        {
+            close(ss);
+            process_conn_3(sc);
+        } else
+        {   
+                free(vs); //对应于readv和writev函数
+                close(sc);
+        }
 
-    }
+        }
 
 
     return 0;
