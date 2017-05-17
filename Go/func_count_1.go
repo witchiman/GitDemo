@@ -5,7 +5,10 @@ import (
 	"fmt"
 	"strconv"
 )
+
 var pc [256]byte
+
+/*初始化程序时运行*/
 func init() {
 	for i := range pc {
 		pc[i] = pc[i/2] + byte(i&1)

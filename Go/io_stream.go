@@ -1,3 +1,8 @@
+/*
+ * 读入一个文件，文件每行只有一个单词，编写程序统计每个单词的数量，
+ * 存到一个map里,通过文件流的方式读取文件
+ */
+
 package main
 
 import (
@@ -35,7 +40,7 @@ func main()  {
 	}
 
 	for key, value := range counts {
-		if value > 1 {
+		if value > 0 {
 			fmt.Printf("The map is : %d\t%s\n", value, key)
 		}
 	}
