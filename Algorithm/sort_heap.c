@@ -3,23 +3,26 @@
 //本函数功能是：根据数组array构建大顶堆
 void HeapAdjust(int array[],int i,int nLength)
 {
-    int nChild;
-    int nTemp;
-    for(;2*i+1<nLength;i=nChild)
+    int child;
+    while (2*i + 1 < length)
     {
         //子结点的位置=2*（父结点位置）+1
-        nChild=2*i+1;
+        child = 2*i + 1;
         //得到子结点中较大的结点
-        if(nChild<nLength-1&&array[nChild+1]>array[nChild]) 
-            ++nChild;
-        //如果较大的子结点大于父结点那么把较大的子结点往上移动，替换它的父结点
-        if(array[i]<array[nChild])
+        if (child<length-1 && arr[child]<arr[child+1])
         {
-            nTemp=array[i];
-            array[i]=array[nChild];
-            array[nChild]=nTemp; 
-        } else
-            break; //否则退出循环
+            child++;
+        }
+        //如果较大的子结点大于父结点那么把较大的子结点往上移动，替换它的父结点
+        if (arr[i] < arr[child])
+        {
+            arr[i] = arr[i] ^ arr[child];
+            arr[child] = arr[i] ^ arr[child];
+            arr[i] = arr[i] ^ arr[child];
+        } else {
+            break;
+        }
+        i = child;
     }
 }
 //堆排序算法

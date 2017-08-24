@@ -26,6 +26,7 @@ func main()  {
 	runtime := time.Since(start)
     fmt.Printf("运行了%v s", runtime)
 }
+
 func Processor(seq chan int, wait chan struct {}) {
 	go func() {
 		prime, ok := <-seq

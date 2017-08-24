@@ -4,7 +4,7 @@ using namespace std;
 
 const int max_value = 20;
 
-/*初始化为百斐波那契数列*/
+/*初始化为斐波那契数列*/
 void Fib(int *arr)
 {
     arr[0] = 1;
