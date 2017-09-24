@@ -1,7 +1,7 @@
 #include <stdio.h>
 //array是待调整的堆数组，i是待调整的数组元素的位置，nlength是数组的长度
 //本函数功能是：根据数组array构建大顶堆
-void HeapAdjust(int array[],int i,int nLength)
+void HeapAdjust(int array[],int i,int length)
 {
     int child;
     while (2*i + 1 < length)
