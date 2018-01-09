@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1444201999 source:d:\git\calendar\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<locale.h>
+
