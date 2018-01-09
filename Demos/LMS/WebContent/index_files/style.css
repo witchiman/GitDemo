@@ -1,0 +1,193 @@
+﻿/** $Id: style.css,v 1.6 2008/11/25 23:17:51 shannonlucas Exp $
+ *
+ * @file style.css
+ * Hiroshige for Drupal 6.x
+ */
+
+/* @group HTML Elements */
+body {
+    padding:0;
+    margin:0;
+	height:100%;
+	width:100%;
+	background: url(images/big6.jpg) fixed;
+}
+
+#header-band {
+    width: 960px;
+	height:56px;
+    margin:0;
+
+}
+
+#header-banner{
+margin:0 auto;
+width:960px;
+height:124px;
+
+
+
+}
+
+
+/*#sub-header-band {
+    background-color:#111;
+	padding: 0px;
+
+}*/
+
+/*#page-content-band {
+    width: 960px;
+	height: 424px;
+	margin: 0px auto;
+    padding: 0;
+
+}
+*/
+
+/*#sub-header {
+    height: 0px; 
+	width: 960px;
+    margin: 0;
+    padding: 0;
+   
+}*/
+
+#bottom {
+    background: #297700;/*底部颜色-绿色*/
+	margin:0px auto;
+   	width: 960px;
+	height: 50px;
+   
+}
+#bottom-left{
+ _background: #297700;/*底部颜色-绿色*/
+	_margin:0px auto;
+   	_width: 960px;
+	_height: 50px;}
+	
+#footer-band {
+    width: 960px;
+	height: 45px;
+	margin: 0px auto;
+	margin-top:-4px;
+    background: #fff; /*页脚颜色-白色*/
+    padding-top: 3px;
+}
+/*
+ul.search_list  {
+    display: inline;
+    list-style-position: outside;
+    list-style-type: none;
+    margin: 0px;
+}
+
+
+
+ @group Pager Styles
+ul.pager { margin: 3em 2em 1em 2em; }
+
+ul.pager li {
+    margin: 0;
+    padding: 0;
+    font-size: 115%;
+}
+
+ul.pager li a {
+    padding: 2px 5px;
+    color: #36c;
+    
+}
+
+ul.pager li a:hover {
+    padding: 2px 5px;
+    background: #a8a095 none;
+    text-decoration: none;
+}
+
+ul.pager li.pager-current {
+    padding: 2px 5px;
+    color: #111629;
+    font-weight: bold;
+	 display: block;
+
+}
+
+*/
+
+.node-author{
+display:none;
+}
+.node{
+  
+    margin: 40px 0px 0px 40px;
+	_margin: 0px 0px 0px 0px;
+	color:#003300;
+	font-size:12px;
+}
+
+h2{
+margin-top:30px;
+font:"黑体";
+color:#003300;
+font-size:20px;
+text-align: center;
+
+}*/
+p{
+float:left;}
+
+/* @group User Login Form 
+#user-login-form ul  {
+    margin: 0;
+    padding: 5px 0;
+} 
+
+#user-login-form ul li {
+    list-style-position: inside;
+    list-style-type: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+/* @end */
+
+/* @group Blocks (General) */
+
+.block { margin-bottom: 0px; }
+
+
+/* @end */
+
+
+/* @group Bottom Block Area */
+
+#bottom a:link, #bottom a:visited {
+    text-decoration: none; 
+    color: #fff3e1;
+}
+
+#bottom a:hover {
+    color: #ba1704;
+    text-decoration: none; 
+}
+
+/* @end */
+
+/* @group Footer */
+#footer {
+    color: #5d5d5d;
+  	font-size:10px;
+	height:45px;
+	margin-top:5px;
+    *margin-top:5px;
+	*text-align:center
+}
+
+
+/* @end */
+
+
+
+
+

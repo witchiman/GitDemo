@@ -1,0 +1,60 @@
+/* CSS Document */
+
+
+/*----bottom-------*/
+#bottom_link ul{
+font-size:12px;
+margin-left:10px;
+}
+
+
+.bottom_list li{
+    float:left;
+	display:inline;
+        padding-top: 16px;
+	padding-left: 48px;
+	
+	}
+
+.bottom_list li a{
+	color:#ffffff;
+	text-decoration:none;
+        font-family:"ËÎÌו";
+        font-size:12px;
+	}
+
+
+#bottom_link ul li a:hover{
+color:#ffffff;
+text-decoration:underline;
+}
+
+
+
+/*----foot-------*/
+#footid1,#footid2{
+color:#5d5d5d;
+_font-size:9px;}
+#footid2{
+_font-size:10px;}
+
+#footid1 ul{
+_margin-top:10px;
+list-style:none;
+text-align:center}
+#footid1 ul li a{
+text-decoration:none;
+color:#5d5d5d;
+font-size:10px;
+_font-size:9px;
+}
+#footid2 ul li a{
+text-decoration:none;
+color:#5d5d5d;
+font-size:10px;
+_font-size:9px;
+}
+
+#footerul li a:hover,#footerul li a:active{
+color:#297700}
+

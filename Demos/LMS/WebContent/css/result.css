@@ -1,0 +1,77 @@
+@charset "gbk";
+/* CSS Document */
+body{
+	margin:auto;
+	background-color:#bdff82;
+	font-size:12px;
+	font-family:"Î¢ÈíÑÅºÚ";
+}
+a:link,a:visited {
+	font-size:12px;
+	text-decoration: none;
+	color:#666;
+}
+a:hover{}
+.maintable{
+	border:none;
+	text-align:center;
+}
+#main{
+	
+}
+.components{
+	margin:10px;
+}
+#searchbox{
+	margin-bottom:150px;
+	margin-top:auto;
+	margin-left:auto;
+	margin-right:auto;
+}
+#headleft{
+	float:left;
+}
+#headright{
+	margin-right:20px;
+	float:right;
+}
+
+#footleft{
+	margin-left:10px;
+	float:left;
+}
+#footright{
+	margin-left:20px;
+	float:left;
+}
+#title{
+	font-size:36px;
+	font-family:"Ó×Ô²";
+	font-weight:bold;
+	text-align:center;
+	padding:20px;
+	color:#333;
+}
+#loginbox{
+	margin:50px auto;
+}
+#username{
+	font-size:14px;
+	font-family:"Ó×Ô²";
+}
+#infobox{
+	margin-top:50px;
+	margin-bottom:150px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#menu {
+	text-align: right;
+}
+#cover {
+	float: left;
+}
+.text{
+	font-size:12px;
+	font-family:"Î¢ÈíÑÅºÚ";
+}

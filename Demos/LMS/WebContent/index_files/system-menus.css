@@ -1,0 +1,80 @@
+﻿/* $Id: system-menus.css,v 1.1 2007/10/05 14:50:25 goba Exp $ */
+
+ul.menu {
+  list-style: none;
+  border: none;
+  text-align:left; /* LTR */
+
+
+}
+ul.menu li {
+
+   *margin-top:2px;
+   _margin-left:4px;
+ 
+}
+
+
+li.expanded {
+
+    *float:left;
+	*background:url(../../misc/left_12.png) no-repeat;
+	_background:url(../../misc/left_12.png) no-repeat;
+	_background-position: 39px 0px;
+}
+
+li.expanded a{	
+_margin-left:58px;
+_text-decoration:none;
+_list-style-type:none;
+_font-size:14px;
+_font-style:"黑体";
+_font-weight:bolder;
+_color:#297700;
+_line-height:30px;
+}
+
+li a.active{
+_font-style:"黑体";
+_font-weight:bolder;
+_color:#297700;}
+
+
+li.collapsed {
+  
+  *list-style-image: url(../../misc/left_11.png);  LTR }
+
+
+li.leaf {
+  
+  *list-style-image: url(../../misc/left_11.png);
+  padding: 0.2em 0.5em 0 0; 
+  margin: 0;
+}
+
+
+td.menu-disabled {
+  background: #ccc;
+}
+ul.links {
+  margin: 0;
+  padding: 0;
+}
+ul.links.inline {
+  display: inline;
+}
+ul.links li {
+  display: inline;
+  list-style-type: none;
+  padding: 0 0.5em;
+}
+
+.block ul {
+  margin: 0;
+  padding: 0 0 0.25em 1em; /* LTR */
+}
+
+#page-content2 h2{
+font:"黑体";
+font-weight:bold;
+text-align:center;}

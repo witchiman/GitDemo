@@ -1,0 +1,99 @@
+/* CSS Document */
+
+
+a.button2 { 
+background: transparent url('../img/left_button.png') no-repeat; 
+display: block; 
+float:left;
+height:26px; 
+width:104px;
+
+font: normal 15px sans-serif; 
+font-weight: bolder;
+text-align:center;
+margin-top: 2px;
+margin-left: 23px; 
+_margin-left:12px;
+text-decoration: none; 
+} 
+
+a.button2 span { 
+color: #76684f; 
+display: block; 
+padding: 3px 4px 2px 12px; 
+margin-top:4px;
+
+} 
+
+
+
+.list2{
+clear:left;
+float:left;
+margin:9px auto;
+
+}
+
+ul.listid2{
+margin:8px;
+padding-left:10px;
+}
+
+ul.listid2 li{
+text-decoration:none;
+font:normal 12px sans-serif;
+height: 16px; 
+width: 100px;
+padding-top:9px;
+padding-left:15px;
+list-style-type:none;
+margin-left:30px;
+
+}
+ul.listid2 li a{
+text-decoration:none;
+color:#111111;
+padding-left:10px;
+cursor: pointer; 
+}
+
+ul.listid2 li a:hover,ul.listid2 li a:active{
+color: #297700;
+font-weight:bold;}
+
+.list3{
+	clear:left;
+	float:left;
+	margin-left:30px;
+	padding-top:5px;
+	}
+	
+#list3title{
+	font-size:12px;
+	font-weight:bold;
+	color:#76684f;}
+
+	
+#call{
+z-index: 1; 
+position: absolute; 
+
+width: 183px; 
+display: block; 
+/*background: url(Image_Call/bottom.jpg) no-repeat; */
+top: 200px; 
+left: -40px
+}
+
+img.calllist{
+margin-top:-3px;
+_margin-top:0px;
+*margin-top:0px;
+}
+
+iframe.calllist{
+margin-top:-3px;
+_margin-top:0px;
+*margin-top:0px;
+
+}

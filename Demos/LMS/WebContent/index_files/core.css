@@ -1,0 +1,184 @@
+/** $Id: core.css,v 1.4 2009/01/06 13:52:11 shannonlucas Exp $
+ * @file core.css
+ * Provides styling for Drupal's admin related features.
+ */
+
+/* @group Node Editing Tabs */
+
+#tabs-wrapper { margin-bottom: 1em; }
+
+#tabs-wrapper ul.primary, 
+#tabs-wrapper ul.secondary {
+    background-color: #ccc;
+    border-bottom: 1px solid #333;
+    color: #333;
+    display: block;
+    float: left;
+    height: auto;
+    line-height: normal;
+    list-style-position: outside;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+    width: 100%;
+}
+
+#tabs-wrapper ul.primary li,
+#tabs-wrapper ul.secondary li {
+    border: 0;
+    display: inline;
+    line-height: 2.2em;
+    margin: 0;
+    padding: 0;
+}
+
+#tabs-wrapper ul.primary li a,
+#tabs-wrapper ul.secondary li a {
+    background: transparent;
+    border: 0;
+    color: #333;
+    float: left;
+    font-weight: normal;
+    margin: 0;
+    padding: 0 10px;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+#tabs-wrapper ul.primary li a:hover {
+    background-color: #333;
+    color: #4cf;
+}
+
+#tabs-wrapper ul.primary li.active a,
+#tabs-wrapper ul.primary li.active a.active {
+    background-color: #333;
+    border: 0;
+    color: #ccc;
+}
+
+#tabs-wrapper ul.secondary {
+    background: transparent;
+    color: #ccc;
+}
+
+#tabs-wrapper ul.secondary li {	line-height: 1.5em; }
+
+#tabs-wrapper ul.secondary li a { padding-top: 4px; }
+
+#tabs-wrapper ul.secondary li a.active {
+    border-bottom: 4px solid #ccc;
+    color: #333;
+}
+
+#tabs-wrapper ul.secondary li a:hover {
+    border-bottom: 4px solid #ba1704;
+    color: #ba1704;
+    text-decoration: none;
+}
+
+#tabs-wrapper ul.secondary li.active a:hover {
+    border-bottom: 4px solid #ccc;
+    color: #333;
+}
+
+/* @end */
+
+
+/* @group Admin Styles */
+div.admin div.left {
+    margin-left: 0;
+    margin-right: 10px;
+    width: 330px;
+}
+
+div.admin div.right {
+    margin-right: 0;
+    margin-left: 10px;
+    width: 330px;
+}
+
+.admin-panel h3 {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0;
+    text-transform: lowercase;
+}
+
+.admin-panel div.body {
+    margin: 0;
+    padding: 0;
+}
+
+.admin-panel div.body p.description {
+    color: #888;
+    font-style: italic;
+    font-size: 90%;
+    margin-bottom: 1em;
+}
+
+.admin-panel div.body dl.admin-list dt {
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+.admin-panel div.body dl.admin-list dd {
+    color: #888;
+    font-size: 90%;
+    margin-bottom: 1em;
+}
+
+dl.node-type-list {
+    clear: both;
+    float: left;
+}
+
+dl.node-type-list dt {
+    float: left;
+    width: 25%;
+}
+
+dl.node-type-list dd {
+    float: left;
+    width: 75%;
+}
+
+/* @end */
+
+/* @group Book overrides */
+#book-outline {
+    min-width: 460px;
+    max-width: 700px;
+    display: inline;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+/* @end */
+
+
+/* @group Status Messages */
+div.messages {
+    font-style: italic;
+    margin-bottom: 1em;
+    padding: 10px;
+}
+
+div.status {
+    background-color: #d1ffc0;
+    border: 1px solid #65b946;
+}
+
+div.warning {
+    background-color: #fffbcc;
+    border: 1px solid #cfc767;
+    margin-bottom: 1em;
+}
+
+div.error {
+    background-color: #fcc;
+    border: 1px solid #d77;
+}
+
+/* @end */
+

@@ -1,0 +1,22 @@
+﻿/** $Id: views.css,v 1.1 2008/10/13 00:46:09 shannonlucas Exp $
+ *
+ * @file views.css
+ * CSS classes specific to the Views module.
+ */
+
+div.views-admin-links ul.links li {
+    background-color: #111629;
+    padding:0;
+    margin: 0 2em 0 0;
+}
+div.views-admin-links ul.links li a:link,
+div.views-admin-links ul.links li a:visited {
+    color: #fff3e1;
+    padding: 4px 2px;
+}
+
+div.views-admin-links ul.links li a:hover {
+    background-color: #fff3e1;
+    background-image: none;
+    text-decoration: none;
+}
